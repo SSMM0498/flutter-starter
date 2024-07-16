@@ -1,0 +1,55 @@
+├─── 📂 common
+│   ├─── 📂 styles
+│   │   ├─── shadows_styles.dart
+│   │   ├─── spacing_styles.dart
+│   │   └─── theme.dart
+│   └─── 📂 widgets
+│       ├─── 📂 app_bars
+│       ├─── 📂 custom_shapes
+│       ├─── 📂 icons
+│       ├─── 📂 images
+│       ├─── 📂 layouts
+│       ├─── 📂 shimmers
+│       └─── 📂 texts
+├─── 📂 core
+│   ├─── 📂 utils
+│   │   ├─── constants.dart
+│   │   ├─── device_utils.dart
+│   │   ├─── exceptions.dart
+│   │   ├─── formatter_utils.dart
+│   │   ├─── helpers.dart
+│   │   ├─── http_utils.dart
+│   │   ├─── logging_utils.dart
+│   │   ├─── popups_utils.dart
+│   │   ├─── request_utils.dart
+│   │   └─── validators_utils.dart
+│   ├─── 📂 middleware
+│   └─── 📂 services
+│       ├─── local_storage
+│       ├─── network_service
+│       └─── pocketbase_service
+├─── 📂 data
+│   ├─── 📂 repository
+│   │   ├─── authentication
+│   │   └─── user
+│   └─── 📂 models
+│       ├─── 📂 authentication
+│       └─── 📂 user
+├─── 📂 features
+│   ├─── 📂 authentication
+│   │   ├─── 📂 controllers
+│   │   ├─── 📂 models
+│   │   └─── 📂 screens
+│   ├─── 📂 main
+│   │   ├─── 📂 controllers
+│   │   ├─── 📂 models
+│   │   └─── 📂 screens
+│   └─── 📂 user
+│       ├─── 📂 controllers
+│       ├─── 📂 models
+│       └─── 📂 screens
+├─── 📂 routes
+│   ├─── 📂 dashboard
+│   └─── 📂 home
+├─── app.dart
+└─── main.dart

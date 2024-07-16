@@ -1,0 +1,52 @@
+# Detailed Flutter Starter Template TODO List
+
+## Custom Icon Launcher and Splash Screen
+- [ ] Design app icon and splash screen assets
+- [ ] Add app icon assets to `assets/icons` directory
+- [ ] Add splash screen assets to `assets/splash` directory
+- [ ] Configure `flutter_launcher_icons` in `pubspec.yaml` with paths to app icon assets
+- [ ] Run `flutter pub run flutter_launcher_icons:main` to generate app icons for iOS and Android
+- [ ] Configure `flutter_native_splash` in `pubspec.yaml` with paths to splash screen assets and desired background color
+- [ ] Run `flutter pub run flutter_native_splash:create` to generate splash screens for iOS and Android
+
+## Internationalization (i18n) Setup
+- [ ] Add `intl` package to `pubspec.yaml`
+- [ ] Create `lib/l10n` directory for localization files
+- [ ] Add `arb` files for each supported language in `lib/l10n` (e.g., `app_en.arb`, `app_es.arb`)
+- [ ] Configure `flutter_localizations` in `pubspec.yaml` to enable internationalization support
+- [ ] Setup `AppLocalizations` class in `lib/l10n` to load and manage translations
+- [ ] Implement logic in `main.dart` to detect and set the device's locale or allow users to manually select their preferred language
+
+## Basic Theme Setup
+- [ ] Create `theme.dart` in `lib/common/styles` directory
+- [ ] Define global theme data for light and dark themes (colors, typography, button styles, etc.)
+- [ ] Configure `MaterialApp` in `main.dart` to use the defined themes
+- [ ] Implement theme switcher logic in settings to allow users to toggle between light and dark themes
+
+## Authentication Flow
+### Setup Firebase and GetX
+- [ ] Add Firebase to the project (follow Firebase's official setup guide for Flutter)
+- [ ] Initialize Firebase in `main.dart`
+- [ ] Add `flutter_secure_storage` to `pubspec.yaml`
+- [ ] Add GetX to `pubspec.yaml` for state management and navigation
+### Implement Authentication Screens
+- [ ] Create `authentication` directory under `lib/features`
+- [ ] Implement login screen in `lib/features/authentication/screens`
+  - [ ] Design UI
+  - [ ] Integrate Firebase authentication for email and password login
+  - [ ] Add Google, Facebook, & GitHub Sign-In options
+- [ ] Implement registration screen
+  - [ ] Design UI
+  - [ ] Integrate Firebase authentication for email and password registration
+- [ ] Implement forgot password screen
+  - [ ] Design UI
+  - [ ] Integrate Firebase password reset functionality
+- [ ] Implement secure storage of user credentials and tokens
+### User Profile and Session Management
+- [ ] Implement user profile screen
+  - [ ] Design UI
+  - [ ] Display user information from Firebase
+- [ ] Setup GetX Controllers for authentication state management
+  - [ ] Create `AuthController` to manage user sessions
+  - [ ] Implement logic to check user authentication status on app start
+  - [ ] Implement sign-out functionality
