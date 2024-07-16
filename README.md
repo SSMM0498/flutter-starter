@@ -28,7 +28,7 @@ To get started with this Flutter starter template, follow these steps:
 3. Open the project in your favorite code editor
 4. Run `flutter pub get` to install the project dependencies
 5. Start building your Flutter app by customizing it!
-   1. To customize the app's icons, theme, colors, fonts, etc., you can modify the `theme.dart` file in the `common/styles` directory.
+   1. To customize the app's icons, theme, colors, fonts, etc., you can modify the `theme.dart` file in the `common/styles` directory. [color](starter\lib\common\styles\colors.dart)
    2. To add new dependencies or update existing ones, you can modify the `pubspec.yaml` file.
    3. To add new features or screens to the app, you can create new directories under the `features` directory and follow the existing structure.
    4. To add new routes or navigation logic, you can modify the `app_routes.dart` file in the `routes` directory.

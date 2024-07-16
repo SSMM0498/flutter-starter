@@ -19,10 +19,10 @@
 - [x] Implement language switcher logic in settings to allow users to change the app's language
 
 ## Basic Theme Setup
-- [ ] Create `theme.dart` in `lib/common/styles` directory
-- [ ] Define global theme data for light and dark themes (colors, typography, button styles, etc.)
-- [ ] Configure `MaterialApp` in `main.dart` to use the defined themes
-- [ ] Implement theme switcher logic in settings to allow users to toggle between light and dark themes
+- [x] Create `theme.dart` in `lib/common/styles` directory
+- [x] Define global theme data for light and dark themes (colors, typography, button styles, etc.)
+- [x] Configure `MaterialApp` in `main.dart` to use the defined themes
+- [x] Implement theme switcher logic in settings to allow users to toggle between light and dark themes
 
 ## Authentication Flow
 ### Setup Firebase and GetX

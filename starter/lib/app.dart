@@ -2,16 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
-import 'package:starter/common/widgets/lang_switcher.dart';
+import 'package:starter/common/widgets/switcher/lang.dart';
+import 'package:starter/common/widgets/switcher/theme.dart';
+import 'package:starter/core/controllers/theme_controller.dart';
+
+import 'common/styles/themes/theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.put(ThemeController());
     return GetMaterialApp(
       title: 'Starter',
       debugShowCheckedModeBanner: false,
+      themeMode: themeController.themeMode, // Use the current theme mode from the controller
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -21,10 +29,6 @@ class MyApp extends StatelessWidget {
         Locale('en', ''), // English
         Locale('fr', ''), // French
       ],
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
       home: const MyHomePage(),
     );
   }
@@ -50,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
 
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -67,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            LanguageSwitcherWidget()
+            LanguageSwitcherWidget(),
+            ThemeSwitcherWidget()
           ],
         ),
       ),
