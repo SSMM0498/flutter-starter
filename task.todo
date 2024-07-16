@@ -1,21 +1,22 @@
 # Detailed Flutter Starter Template TODO List
 
 ## Custom Icon Launcher and Splash Screen
-- [ ] Design app icon and splash screen assets
-- [ ] Add app icon assets to `assets/icons` directory
-- [ ] Add splash screen assets to `assets/splash` directory
-- [ ] Configure `flutter_launcher_icons` in `pubspec.yaml` with paths to app icon assets
-- [ ] Run `flutter pub run flutter_launcher_icons:main` to generate app icons for iOS and Android
-- [ ] Configure `flutter_native_splash` in `pubspec.yaml` with paths to splash screen assets and desired background color
-- [ ] Run `flutter pub run flutter_native_splash:create` to generate splash screens for iOS and Android
+- [x] Design app icon and splash screen assets
+- [x] Add app icon assets to `assets/icons` directory
+- [x] Add splash screen assets to `assets/splash` directory
+- [x] Configure `flutter_launcher_icons` in `pubspec.yaml` with paths to app icon assets
+- [x] Run `flutter pub run flutter_launcher_icons:main` to generate app icons for iOS and Android
+- [x] Configure `flutter_native_splash` in `pubspec.yaml` with paths to splash screen assets and desired background color
+- [x] Run `flutter pub run flutter_native_splash:create` to generate splash screens for iOS and Android
 
 ## Internationalization (i18n) Setup
-- [ ] Add `intl` package to `pubspec.yaml`
-- [ ] Create `lib/l10n` directory for localization files
-- [ ] Add `arb` files for each supported language in `lib/l10n` (e.g., `app_en.arb`, `app_es.arb`)
-- [ ] Configure `flutter_localizations` in `pubspec.yaml` to enable internationalization support
-- [ ] Setup `AppLocalizations` class in `lib/l10n` to load and manage translations
-- [ ] Implement logic in `main.dart` to detect and set the device's locale or allow users to manually select their preferred language
+- [x] Add `intl` package to `pubspec.yaml`
+- [x] Create `lib/l10n` directory for localization files
+- [x] Add `arb` files for each supported language in `lib/l10n` (e.g., `app_en.arb`, `app_fr.arb`)
+- [x] Configure `flutter_localizations` in `pubspec.yaml` to enable internationalization support
+- [x] Setup `AppLocalizations` class in `lib/l10n` to load and manage translations
+- [x] Implement logic in `main.dart` to detect and set the device's locale or allow users to manually select their preferred language
+- [ ] Implement language switcher logic in settings to allow users to change the app's language
 
 ## Basic Theme Setup
 - [ ] Create `theme.dart` in `lib/common/styles` directory

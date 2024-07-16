@@ -3,7 +3,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:starter/app.dart';
 
 Future<void> main() async {
-    // Ensure that Flutter bindings are initialized
+  // Ensure that Flutter bindings are initialized
   final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
   // Preserve the native splash screen
