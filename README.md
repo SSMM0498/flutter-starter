@@ -175,3 +175,12 @@ The `lib` directory is further divided into the following subdirectories:
 + [Path Provider](https://pub.dev/packages/path_provider)
 + [Pocketbase](https://pub.dev/packages/pocketbase)
 
+## Utils Commands
+
+```sh
+dart run flutter_native_splash:create
+```
+
+```sh
+dart run flutter_launcher_icons
+```

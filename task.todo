@@ -25,28 +25,31 @@
 - [x] Implement theme switcher logic in settings to allow users to toggle between light and dark themes
 
 ## Authentication Flow
-### Setup Firebase and GetX
-- [ ] Add Firebase to the project (follow Firebase's official setup guide for Flutter)
-- [ ] Initialize Firebase in `main.dart`
-- [ ] Add `flutter_secure_storage` to `pubspec.yaml`
-- [ ] Add GetX to `pubspec.yaml` for state management and navigation
+### Setup Pocketbase and GetX
+- [x] Add Pocketbase to the project (follow Pocketbase's official setup guide for Flutter)
+- [x] Initialize Pocketbase in `main.dart`
+- [x] Add `flutter_secure_storage` to `pubspec.yaml`
+- [x] Add GetX to `pubspec.yaml` for state management and navigation
 ### Implement Authentication Screens
-- [ ] Create `authentication` directory under `lib/features`
+- [x] Create `authentication` directory under `lib/features`
+- [ ] Implement onboarding screen in `lib/features/authentication/onboarding`
+  - [ ] Design UI
+  - [ ] Make onboarding screens appears once
 - [ ] Implement login screen in `lib/features/authentication/screens`
   - [ ] Design UI
-  - [ ] Integrate Firebase authentication for email and password login
+  - [ ] Integrate Pocketbase authentication for email and password login
   - [ ] Add Google, Facebook, & GitHub Sign-In options
 - [ ] Implement registration screen
   - [ ] Design UI
-  - [ ] Integrate Firebase authentication for email and password registration
+  - [ ] Integrate Pocketbase authentication for email and password registration
 - [ ] Implement forgot password screen
   - [ ] Design UI
-  - [ ] Integrate Firebase password reset functionality
+  - [ ] Integrate Pocketbase password reset functionality
 - [ ] Implement secure storage of user credentials and tokens
 ### User Profile and Session Management
 - [ ] Implement user profile screen
   - [ ] Design UI
-  - [ ] Display user information from Firebase
+  - [ ] Display user information from Pocketbase
 - [ ] Setup GetX Controllers for authentication state management
   - [ ] Create `AuthController` to manage user sessions
   - [ ] Implement logic to check user authentication status on app start
