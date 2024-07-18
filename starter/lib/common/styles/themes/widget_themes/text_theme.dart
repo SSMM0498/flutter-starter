@@ -6,6 +6,7 @@ class CustomTextTheme {
 
   /// Customizable Light Text Theme
   static TextTheme lightTextTheme = TextTheme(
+    displaySmall: const TextStyle().copyWith(fontSize: 36.0, fontWeight: FontWeight.bold, color: AppColors.dark),
     headlineLarge: const TextStyle().copyWith(fontSize: 32.0, fontWeight: FontWeight.bold, color: AppColors.dark),
     headlineMedium: const TextStyle().copyWith(fontSize: 24.0, fontWeight: FontWeight.w600, color: AppColors.dark),
     headlineSmall: const TextStyle().copyWith(fontSize: 18.0, fontWeight: FontWeight.w600, color: AppColors.dark),
