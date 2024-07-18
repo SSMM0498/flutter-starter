@@ -7,8 +7,9 @@ class Validator {
   }
 
   static String? validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Email is required.';
+    final isEmpty = validateEmptyText('Email', value);
+    if (isEmpty != null || value == null) {
+      return isEmpty;
     }
 
     // Regular expression for email validation
@@ -22,13 +23,14 @@ class Validator {
   }
 
   static String? validatePassword(String? value) {
+    final minCharacters = 8;
     if (value == null || value.isEmpty) {
       return 'Password is required.';
     }
 
     // Check for minimum password length
-    if (value.length < 6) {
-      return 'Password must be at least 6 characters long.';
+    if (value.length < minCharacters) {
+      return 'Password must be at least $minCharacters characters long.';
     }
 
     // Check for uppercase letters
@@ -54,7 +56,7 @@ class Validator {
       return 'Phone number is required.';
     }
 
-    // Regular expression for phone number validation (assuming a 9-digit PL phone number format)
+    // Regular expression for phone number validation (assuming a 9-digit SN phone number format xx-xxx-xx-xx)
     final phoneRegExp = RegExp(r'^\d{9}$');
 
     if (!phoneRegExp.hasMatch(value)) {
