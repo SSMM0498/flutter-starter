@@ -32,8 +32,8 @@
 - [x] Add GetX to `pubspec.yaml` for state management and navigation
 ### Implement Authentication Screens
 - [x] Create `authentication` directory under `lib/features`
-- [ ] Implement onboarding screen in `lib/features/authentication/onboarding`
-  - [ ] Design UI
+- [x] Implement onboarding screen in `lib/features/authentication/onboarding`
+  - [x] Design UI
   - [ ] Make onboarding screens appears once
 - [ ] Implement login screen in `lib/features/authentication/screens`
   - [ ] Design UI
