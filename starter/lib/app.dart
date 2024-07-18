@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
-import 'package:starter/common/widgets/switcher/lang.dart';
-import 'package:starter/common/widgets/switcher/theme.dart';
+import 'package:starter/core/controllers/network_manager.dart';
 import 'package:starter/core/controllers/theme_controller.dart';
+import 'package:starter/core/controllers/user_controller.dart';
+import 'package:starter/data/repository/user_repository.dart';
+import 'package:starter/routes/app_routes.dart';
 
 import 'common/styles/themes/theme.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+  const MyApp({super.key, required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -29,57 +32,18 @@ class MyApp extends StatelessWidget {
         Locale('en', ''), // English
         Locale('fr', ''), // French
       ],
-      home: const MyHomePage(),
+      initialBinding: GeneralBindings(),
+      initialRoute: initialRoute,
+      getPages: AppRoutes.pages,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
+class GeneralBindings extends Bindings {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
-
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(localizations.helloWorld),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            LanguageSwitcherWidget(),
-            ThemeSwitcherWidget()
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+  void dependencies() {
+    Get.put(NetworkManager());
+    Get.put(UserRepository());
+    Get.put(UserController());
   }
 }
