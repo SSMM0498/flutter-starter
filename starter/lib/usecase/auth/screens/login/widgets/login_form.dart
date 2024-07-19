@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/sizes.dart';
+import 'package:starter/common/widgets/app_checkbox/app_checkbox.dart';
 import 'package:starter/usecase/auth/controllers/login/login_controller.dart';
 import 'package:starter/usecase/auth/screens/password_configuration/forget_password.dart';
 import 'package:starter/utils/validation.dart';
@@ -51,16 +52,12 @@ class LoginForm extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Obx(
-                      () => Checkbox(
-                        value: controller.rememberMe.value,
-                        onChanged: (value) => controller.rememberMe.value = !controller.rememberMe.value,
-                      ),
-                    ),
-                    const Text("Remember me"),
-                  ],
+                Obx(
+                  () => AppCheckbox(
+                    label: "Remember me",
+                    value: controller.rememberMe.value,
+                    onChanged: (value) => controller.rememberMe.value = !controller.rememberMe.value,
+                  ),
                 ),
                 TextButton(
                   onPressed: () => Get.to(() => const ForgetPassword()),
