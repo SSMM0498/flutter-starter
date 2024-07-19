@@ -12,23 +12,24 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(showBackArrow: true),
-      body: SingleChildScrollView(
+      appBar: CustomAppBar(
+        showBackArrow: true,
+        title: Text(
+          "Let’s become a member",
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+      ),
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(Sizes.defaultSpace),
+          padding: EdgeInsets.all(Sizes.defaultSpace),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Let’s create your account",
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              const SizedBox(height: Sizes.spaceBtwSections),
-              const SignupForm(),
-              const SizedBox(height: Sizes.spaceBtwSections),
-              const FormDivider(dividerText: "or sign up with"),
-              const SizedBox(height: Sizes.spaceBtwSections),
-              const SocialButtons(),
+              SignupForm(),
+              SizedBox(height: Sizes.spaceBtwSections),
+              FormDivider(dividerText: "or sign up with"),
+              SizedBox(height: Sizes.spaceBtwSections),
+              SocialButtons(),
             ],
           ),
         ),

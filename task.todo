@@ -50,6 +50,10 @@
 - [ ] Implement user profile screen
   - [ ] Design UI
   - [ ] Display user information from Pocketbase
+- [ ] Implement user update screen
+  - [ ] Design UI
+  - [ ] Display user information from Pocketbase
+  - [ ] Integrate Pocketbase user update functionality
 - [ ] Setup GetX Controllers for authentication state management
   - [ ] Create `AuthController` to manage user sessions
   - [ ] Implement logic to check user authentication status on app start

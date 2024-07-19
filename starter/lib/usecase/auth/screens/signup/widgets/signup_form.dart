@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -6,7 +5,6 @@ import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/usecase/auth/controllers/signup/signup_controller.dart';
 import 'package:starter/usecase/auth/screens/signup/widgets/terms_conditions_checkbox.dart';
 import 'package:starter/utils/validation.dart';
-
 
 class SignupForm extends StatelessWidget {
   const SignupForm({super.key});
@@ -85,6 +83,22 @@ class SignupForm extends StatelessWidget {
                 suffixIcon: IconButton(
                   onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
                   icon: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: Sizes.spaceBtwInputFields),
+          Obx(
+            () => TextFormField(
+              controller: controller.confirmPassword,
+              validator: (value) => Validator.validatePassword(value),
+              obscureText: controller.hideConfirmPassword.value,
+              decoration: InputDecoration(
+                labelText: "Confirm Password",
+                prefixIcon: const Icon(Iconsax.password_check),
+                suffixIcon: IconButton(
+                  onPressed: () => controller.hideConfirmPassword.value = !controller.hideConfirmPassword.value,
+                  icon: Icon(controller.hideConfirmPassword.value ? Iconsax.eye_slash : Iconsax.eye),
                 ),
               ),
             ),

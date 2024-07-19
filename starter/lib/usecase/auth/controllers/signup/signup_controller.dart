@@ -11,13 +11,15 @@ class SignupController extends GetxController {
   static SignupController get instance => Get.find();
 
   final hidePassword = true.obs;
-  final privacyPolicy = true.obs;
-  final firstName = TextEditingController(text: "Cheikh Ibrahima Fall");
-  final lastName = TextEditingController(text: "Mbaye");
-  final username = TextEditingController(text: "cifam");
-  final email = TextEditingController(text: "smbaye@tolbico.com");
-  final password = TextEditingController(text: "P@sser123");
-  final phoneNumber = TextEditingController(text: "774118588");
+  final hideConfirmPassword = true.obs;
+  final privacyPolicy = false.obs;
+  final firstName = TextEditingController();
+  final lastName = TextEditingController();
+  final username = TextEditingController();
+  final email = TextEditingController();
+  final password = TextEditingController();
+  final confirmPassword = TextEditingController();
+  final phoneNumber = TextEditingController();
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 
   void signup() async {
@@ -46,21 +48,26 @@ class SignupController extends GetxController {
         return;
       }
 
+      // Check if passwords are identic
+      if (password.text.trim() != confirmPassword.text.trim()) {
+        FullScreenLoader.stopLoading();
+        Loaders.warningSnackBar(
+            title: 'Password Confirmation', message: 'The password confirmation does not match.');
+        return;
+      }
+
       // Register user with email and password
       var body = {
         'email': email.text.trim(),
         'password': password.text.trim(),
-        'passwordConfirm': password.text.trim(),
+        'passwordConfirm': confirmPassword.text.trim(),
         'firstName': firstName.text.trim(),
         'lastName': lastName.text.trim(),
         'username': username.text.trim(),
         'phoneNumber': phoneNumber.text.trim(),
       };
-      final user = await AuthController.instance.registerWithEmailAndPassword(body);
+      await AuthController.instance.registerWithEmailAndPassword(body);
       await AuthController.instance.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
-
-      debugPrint('❌ --forget-user-- $body');
-      user.email = body['email']!;
 
       // Go to verify email screen
       FullScreenLoader.stopLoading();
