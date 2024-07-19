@@ -34,10 +34,10 @@
 - [x] Create `authentication` directory under `lib/features`
 - [x] Implement onboarding screen in `lib/features/authentication/onboarding`
   - [x] Design UI
-  - [ ] Make onboarding screens appears once
+  - [x] Make onboarding screens appears once
 - [ ] Implement login screen in `lib/features/authentication/screens`
-  - [ ] Design UI
-  - [ ] Integrate Pocketbase authentication for email and password login
+  - [x] Design UI
+  - [x] Integrate Pocketbase authentication for email and password login
   - [ ] Add Google, Facebook, & GitHub Sign-In options
 - [ ] Implement registration screen
   - [ ] Design UI

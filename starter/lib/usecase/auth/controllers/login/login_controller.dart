@@ -68,7 +68,7 @@ class LoginController extends GetxController {
     }
   }
 
-  Future<void> googleSignIn() async {
+  Future<void> providerSignIn(String provider) async {
     try {
       FullScreenLoader.openLoadingDialog('Logging you in...', ImageStrings.docerAnimation);
 
@@ -80,7 +80,7 @@ class LoginController extends GetxController {
       }
 
       // ignore: unused_local_variable
-      final userCredentials = await AuthController.instance.loginProvider('google');
+      final userCredentials = await AuthController.instance.loginProvider(provider);
 
       if (userCredentials.token.isNotEmpty && userCredentials.record != null) {
         final user = UserModel.fromJson(json.decode(userCredentials.record.toString()));
@@ -93,7 +93,7 @@ class LoginController extends GetxController {
 
         Get.offAllNamed('/');
       } else {
-        throw "Can login with google";
+        throw "Can login with $provider";
       }
     } catch (e) {
       FullScreenLoader.stopLoading();

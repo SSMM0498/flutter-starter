@@ -23,7 +23,7 @@ class SocialButtons extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
           ),
           child: IconButton(
-            onPressed: () => controller.googleSignIn(),
+            onPressed: () => controller.providerSignIn('google'),
             icon: const Image(
               width: Sizes.iconMd,
               height: Sizes.iconMd,
@@ -38,8 +38,7 @@ class SocialButtons extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
           ),
           child: IconButton(
-            // TODO: Implement Facebook Signin
-            onPressed: () {},
+            onPressed: () => controller.providerSignIn('github'),
             icon: const Image(
               width: Sizes.iconMd,
               height: Sizes.iconMd,
