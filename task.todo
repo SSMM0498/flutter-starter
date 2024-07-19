@@ -40,12 +40,12 @@
   - [x] Integrate Pocketbase authentication for email and password login
   - [ ] Add Google, Facebook, & GitHub Sign-In options
 - [ ] Implement registration screen
-  - [ ] Design UI
-  - [ ] Integrate Pocketbase authentication for email and password registration
-- [ ] Implement forgot password screen
-  - [ ] Design UI
-  - [ ] Integrate Pocketbase password reset functionality
-- [ ] Implement secure storage of user credentials and tokens
+  - [x] Design UI
+  - [x] Integrate Pocketbase authentication for email and password registration
+- [x] Implement forgot password screen
+  - [x] Design UI
+  - [x] Integrate Pocketbase password reset functionality
+- [x] Implement secure storage of user credentials and tokens
 ### User Profile and Session Management
 - [ ] Implement user profile screen
   - [ ] Design UI

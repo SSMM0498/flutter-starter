@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:starter/core/middleware/auth_guard.dart';
+import 'package:starter/routes/navigation_panel.dart';
 import 'package:starter/routes/routes.dart';
 import 'package:starter/usecase/auth/screens/login/login.dart';
 import 'package:starter/usecase/auth/screens/onboarding/onboarding.dart';
@@ -24,6 +25,11 @@ class AppRoutes {
     GetPage(
       name: Routes.onBoarding,
       page: () => const OnBoardingScreen(),
+    ),
+    GetPage(
+      name: Routes.navigationPanel,
+      page: () => const NavigationPanel(),
+      middlewares: [AuthGuard()]
     ),
     GetPage(
       name: Routes.home,

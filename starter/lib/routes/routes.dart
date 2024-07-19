@@ -1,5 +1,6 @@
 class Routes {
-  static const home = '/';
+  static const navigationPanel = '/';
+  static const home = '/home';
   static const settings = '/settings';
   static const userProfile = '/user-profile';
   static const signup = '/signup';
