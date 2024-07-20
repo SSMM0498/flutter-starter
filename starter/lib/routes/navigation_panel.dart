@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/colors.dart';
 import 'package:starter/usecase/main/screens/home_screen.dart';
+import 'package:starter/usecase/user/screens/settings/settings.dart';
 import 'package:starter/utils/helper_functions.dart';
 
 class NavigationPanel extends StatelessWidget {
@@ -47,8 +48,6 @@ class NavigationController extends GetxController {
     Container(
       color: Colors.orange,
     ),
-    Container(
-      color: Colors.blue,
-    ),
+    const SettingsScreen(),
   ];
 }
