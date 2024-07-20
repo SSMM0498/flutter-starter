@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pocketbase/pocketbase.dart';
-import 'package:starter/core/controllers/user_controller.dart';
+import 'package:starter/routes/routes.dart';
+import 'package:starter/usecase/user/controllers/user_controller.dart';
 import 'package:starter/data/models/user.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../services/pocketbase/pocketbase.dart';
@@ -23,6 +24,14 @@ class AuthController extends GetxController {
   Future<void> sendEmailVerification(String email) async {
     try {
       await pb.collection('users').requestVerification(email);
+    } on ClientException {
+      rethrow;
+    }
+  }
+
+  Future<void> sendRequestEmailChange(String email) async {
+    try {
+      await pb.collection('users').requestEmailChange(email);
     } on ClientException {
       rethrow;
     }
@@ -57,14 +66,14 @@ class AuthController extends GetxController {
   Future<void> logout() async {
     try {
       await _clearUserInfo();
-      Get.offAllNamed('/login');
+      Get.offAllNamed(Routes.login);
     } on ClientException {
       rethrow;
     }
   }
 
   Future<void> _clearUserInfo() async {
-    UserController.instance.user.value = UserModel.empty();
+    UserController.instance.user = UserModel.empty();
     pb.authStore.clear();
   }
 }

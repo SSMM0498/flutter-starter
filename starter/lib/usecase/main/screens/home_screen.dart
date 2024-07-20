@@ -1,15 +1,14 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 import 'package:pocketbase/pocketbase.dart';
 
 import 'package:starter/common/widgets/switcher/lang.dart';
 import 'package:starter/common/widgets/switcher/theme.dart';
 import 'package:starter/core/controllers/auth_controller.dart';
 import 'package:starter/core/services/pocketbase/pocketbase.dart';
-import 'package:starter/data/models/user.dart';
+import 'package:starter/usecase/user/controllers/user_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
-    final user = UserModel.fromJson(json.decode(json.encode(pb.authStore.model)));
+    final userController = Get.put(UserController());
 
     return Scaffold(
       appBar: AppBar(
@@ -50,8 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            Text(pb.authStore.isValid.toString()),
-            Text("${user.firstName} ${user.lastName}"),
+            Text("${userController.user.firstName} ${userController.user.lastName}"),
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(onPressed: () => AuthController.instance.logout(), child: const Text('Logout')),

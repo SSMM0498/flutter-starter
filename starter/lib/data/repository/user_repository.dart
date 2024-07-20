@@ -8,7 +8,6 @@ import 'package:starter/data/models/user.dart';
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
-  final _cachedUsersData = {};
   final PocketBase pb = PocketBaseSingleton().client;
 
   Future<void> saveUserRecord(UserModel user) async {
@@ -19,34 +18,38 @@ class UserRepository extends GetxController {
     }
   }
 
-  Future<UserModel> fetchUserDetails(
-    String userId, {
-    bool useCache = false,
-  }) async {
+  Future<List<ExternalAuthModel>> getUserProviderList() async {
     try {
-      if (useCache && _cachedUsersData.containsKey(userId)) {
-        return _cachedUsersData[userId];
-      }
-      final user = await pb.collection('users').getOne(userId);
+      final result = await pb.collection('users').listExternalAuths(
+            pb.authStore.model.id,
+          );
+      return result;
+    } on ClientException {
+      rethrow;
+    }
+  }
+
+  Future<UserModel> fetchUserDetails() async {
+    try {
+      final user = await pb.collection('users').getOne(pb.authStore.model.id);
       final userModel = UserModel.fromJson(user.toJson());
-      _cachedUsersData[userId] = userModel;
       return userModel;
     } on ClientException {
       rethrow;
     }
   }
 
-  Future<void> updateUserDetails(UserModel updatedUser) async {
+  Future<void> updateUserDetails(Map<String, dynamic> updatedUser) async {
     try {
-      await pb.collection('users').update(updatedUser.id!, body: updatedUser.toJson());
+      await pb.collection('users').update(pb.authStore.model.id!, body: updatedUser);
     } on ClientException {
       rethrow;
     }
   }
 
-  Future<void> removeUserRecord(String userId) async {
+  Future<void> removeUserRecord() async {
     try {
-      await pb.collection('users').delete(userId);
+      await pb.collection('users').delete(pb.authStore.model.id);
     } on ClientException {
       rethrow;
     }
@@ -55,14 +58,14 @@ class UserRepository extends GetxController {
   Future<String> uploadAvatar(String path, XFile image) async {
     try {
       final file = await image.readAsBytes();
-      await pb.collection('users').update(pb.authStore.model.id, files: [
+      final result = await pb.collection('users').update(pb.authStore.model.id, files: [
         http.MultipartFile.fromBytes(
           'avatar',
           file,
           filename: path,
         ),
       ]);
-      return pb.authStore.model.avatar;
+      return result.data["avatar"];
     } on ClientException {
       rethrow;
     }

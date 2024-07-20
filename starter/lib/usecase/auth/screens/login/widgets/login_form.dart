@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/common/widgets/app_checkbox/app_checkbox.dart';
+import 'package:starter/routes/routes.dart';
 import 'package:starter/usecase/auth/controllers/login/login_controller.dart';
 import 'package:starter/usecase/auth/screens/password_configuration/forget_password.dart';
 import 'package:starter/utils/validation.dart';
@@ -77,7 +78,7 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                onPressed: () => Get.toNamed("/signup"),
+                onPressed: () => Get.toNamed(Routes.signup),
                 child: const Text("Create account"),
               ),
             ),

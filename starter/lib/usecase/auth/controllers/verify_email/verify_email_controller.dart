@@ -7,6 +7,7 @@ import 'package:starter/common/widgets/success_screen/success_screen.dart';
 import 'package:starter/core/controllers/auth_controller.dart';
 import 'package:starter/core/services/pocketbase/pocketbase.dart';
 import 'package:starter/data/models/user.dart';
+import 'package:starter/routes/routes.dart';
 import 'package:starter/utils/image_strings.dart';
 
 class VerifyEmailController extends GetxController {
@@ -45,7 +46,7 @@ class VerifyEmailController extends GetxController {
               image: ImageStrings.successfullyRegisterAnimation,
               title: "Your Account Created",
               subtitle: "Your account has been created successfully.",
-              onPressed: () => Get.offNamed("/"),
+              onPressed: () => Get.offNamed(Routes.navigationPanel),
             ),
           );
         }
@@ -62,7 +63,7 @@ class VerifyEmailController extends GetxController {
           image: ImageStrings.successfullyRegisterAnimation,
           title: "Your Account Created",
           subtitle: "Your account has been created successfully.",
-          onPressed: () => Get.offNamed("/"),
+          onPressed: () => Get.offNamed(Routes.navigationPanel),
         ),
       );
     }

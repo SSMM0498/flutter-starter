@@ -6,7 +6,8 @@ import 'package:starter/common/widgets/loaders/full_screen_loader.dart';
 import 'package:starter/common/widgets/loaders/loaders.dart';
 import 'package:starter/core/controllers/auth_controller.dart';
 import 'package:starter/core/controllers/network_manager.dart';
-import 'package:starter/core/controllers/user_controller.dart';
+import 'package:starter/data/repository/user_repository.dart';
+import 'package:starter/routes/routes.dart';
 import 'package:starter/core/services/local_storage/local_storage.dart';
 import 'package:starter/data/models/user.dart';
 import 'package:starter/utils/image_strings.dart';
@@ -18,7 +19,7 @@ class LoginController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  final userController = Get.put(UserController());
+  final userRepository = Get.put(UserRepository());
 
   @override
   void onInit() {
@@ -60,7 +61,7 @@ class LoginController extends GetxController {
 
       FullScreenLoader.stopLoading();
       if (userCredentials.token.isNotEmpty && userCredentials.record != null) {
-        Get.offAllNamed('/');
+        Get.offAllNamed(Routes.navigationPanel);
       }
     } catch (e) {
       FullScreenLoader.stopLoading();
@@ -84,14 +85,15 @@ class LoginController extends GetxController {
 
       if (userCredentials.token.isNotEmpty && userCredentials.record != null) {
         final user = UserModel.fromJson(json.decode(userCredentials.record.toString()));
-        await userController.saveUserRecord(user);
+        await userRepository.saveUserRecord(user);
+
 
         localStorage.deleteRememberMeEmail();
         localStorage.deleteRememberMePassword();
 
         FullScreenLoader.stopLoading();
 
-        Get.offAllNamed('/');
+        Get.offAllNamed(Routes.navigationPanel);
       } else {
         throw "Can login with $provider";
       }

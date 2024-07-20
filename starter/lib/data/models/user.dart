@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:starter/core/services/pocketbase/pocketbase.dart';
 import 'package:starter/utils/formatter.dart';
+
+enum Gender { male, female }
 
 class UserModel {
   final String? id;
@@ -15,7 +17,9 @@ class UserModel {
   String firstName;
   String lastName;
   String phoneNumber;
-  final String? username;
+  Gender? gender;
+  DateTime? dateOfBirth;
+  String username;
   final bool? verified;
   final String? role; // Added role field
   String? token;
@@ -28,6 +32,8 @@ class UserModel {
     required this.collectionName,
     required this.avatar,
     required this.email,
+    this.gender,
+    this.dateOfBirth,
     required this.firstName,
     required this.lastName,
     required this.phoneNumber,
@@ -39,7 +45,6 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    debugPrintStack(label: '❓ --user-- $json');
     return UserModel(
       id: json["id"] ?? "",
       created: DateTime.tryParse(json["created"] ?? ""),
@@ -48,6 +53,14 @@ class UserModel {
       collectionName: json["collectionName"] ?? "",
       avatar: json["avatar"] ?? "",
       email: json["email"] ?? "",
+      gender: json["gender"].isNotEmpty
+          ? Gender.values.firstWhere(
+              (el) {
+                return el.toString().split('.').last == json["gender"];
+              },
+            )
+          : null,
+      dateOfBirth: json["dateOfBirth"].isNotEmpty ? DateFormat("yyyy-MM-dd hh:mm:ss").parse(json["dateOfBirth"]) : null,
       emailVisibility: json["emailVisibility"] ?? "",
       phoneNumber: json['phoneNumber'] ?? "" ?? "",
       firstName: json["firstName"] ?? "",
@@ -109,6 +122,7 @@ class UserModel {
       "collectionName": collectionName,
       "avatar": avatar,
       "email": email,
+      "gender": gender,
       "emailVisibility": emailVisibility,
       'firstName': firstName,
       'lastName': lastName,

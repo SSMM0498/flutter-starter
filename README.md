@@ -131,15 +131,12 @@ The `lib` directory is further divided into the following subdirectories:
 ├─── 📂 features
 │   ├─── 📂 authentication
 │   │   ├─── 📂 controllers
-│   │   ├─── 📂 models
 │   │   └─── 📂 screens
 │   ├─── 📂 main
 │   │   ├─── 📂 controllers
-│   │   ├─── 📂 models
 │   │   └─── 📂 screens
 │   └─── 📂 user
 │       ├─── 📂 controllers
-│       ├─── 📂 models
 │       └─── 📂 screens
 ```
 - `routes`: Defines the app's navigation routes and screens. This directory contains two files:

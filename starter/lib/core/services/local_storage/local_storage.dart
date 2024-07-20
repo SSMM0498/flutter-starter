@@ -1,28 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:starter/data/models/user.dart';
 
 class LocalStorage {
-  static const _userKey = "USER_KEY";
   static const _tokenKey = 'TOKEN';
   static const _isFirstTokenKey = 'IS_FIRST_TIME';
   static const _rememberMeEmail = 'REMEMBER_ME_EMAIL';
   static const _rememberMePassword = 'REMEMBER_ME_PASSWORD';
 
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
-
-  Future<UserModel?> getUser() async {
-    final user = await _storage.read(key: _userKey);
-    if (user != null) {
-      return UserModel.fromJson(json.decode(user));
-    }
-    return null;
-  }
-
-  Future<void> setUser(UserModel? data) async {
-    await _storage.write(key: _userKey, value: json.encode(data?.toJson()));
-  }
 
   Future<String?> getToken() async {
     final token = await _storage.read(key: _tokenKey);
