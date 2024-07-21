@@ -13,7 +13,8 @@ import 'factories/factory_mobile.dart' if (dart.library.html) 'factories/factory
 class PocketBaseSingleton {
   static final PocketBaseSingleton _instance = PocketBaseSingleton._internal();
 
-  final _pocketBaseUrl = "http://192.168.1.180:8090";
+//   final _pocketBaseUrl = "http://192.168.1.180:8090";
+  final _pocketBaseUrl = "http://10.0.2.2:8090";
   late final PocketBase client;
   late String _temporaryDirectory;
   final _httpClient = HttpClient();
@@ -27,43 +28,44 @@ class PocketBaseSingleton {
 
   Future<void> initialize() async {
     debugPrint('📦 PocketbaseService init');
+    try {
+      final LocalStorage storage = LocalStorage();
 
-    final LocalStorage storage = LocalStorage();
+      final token = await storage.getToken();
 
-    final token = await storage.getToken();
+      final customAuthStore = AsyncAuthStore(
+        initial: token,
+        save: storage.setToken,
+        clear: storage.deleteToken,
+      );
 
-    final customAuthStore = AsyncAuthStore(
-      initial: token,
-      save: storage.setToken,
-      clear: storage.deleteToken,
-    );
+      client = PocketBase(
+        _pocketBaseUrl, // Use the environment variable
+        httpClientFactory: httpClientFactory.getHttpClient(),
+        authStore: customAuthStore,
+      );
 
-    client = PocketBase(
-      _pocketBaseUrl, // Use the environment variable
-      httpClientFactory: httpClientFactory.getHttpClient(),
-      authStore: customAuthStore,
-    );
+      client.authStore.onChange.listen((AuthStoreEvent event) {
+        if (event.model is RecordModel) {
+          user = UserModel.fromJson(event.model.toJson());
+          user.token = event.token;
+          debugPrint('🔐 Update Auth Store ${user.toJson()}');
+        }
+      });
 
-    client.authStore.onChange.listen((AuthStoreEvent event) {
-      if (event.model is RecordModel) {
-        user = UserModel.fromJson(event.model.toJson());
-        user.token = event.token;
-        debugPrint('🔐 Update Auth Store ${user.toJson()}');
+      if (client.authStore.isValid) {
+        try {
+          await authRefresh();
+        } catch (e) {
+          client.authStore.clear();
+        }
       }
-    });
+    } finally {
+      _temporaryDirectory = (await getTemporaryDirectory()).path;
 
-    if (client.authStore.isValid) {
-      try {
-        await authRefresh();
-      } catch (e) {
-        client.authStore.clear();
-      }
+      // Remove splash screen
+      FlutterNativeSplash.remove();
     }
-
-    _temporaryDirectory = (await getTemporaryDirectory()).path;
-
-    // Remove splash screen
-    FlutterNativeSplash.remove();
   }
 
   Future<RecordAuth> authRefresh() async => await client.collection('users').authRefresh();
