@@ -35,6 +35,7 @@ dependencies:
 
   # Icons
   iconsax: ^0.0.8
+  country_flags: ^3.0.0
 
   # Pocketbase
   pocketbase: ^0.18.1

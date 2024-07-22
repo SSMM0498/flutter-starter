@@ -7,7 +7,8 @@ import 'package:starter/common/widgets/appbar/appbar.dart';
 import 'package:starter/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:starter/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:starter/common/widgets/list_tiles/user_profile_tile.dart';
-import 'package:starter/common/widgets/switcher/theme.dart';
+import 'package:starter/usecase/user/screens/settings/widgets/lang.dart';
+import 'package:starter/usecase/user/screens/settings/widgets/theme.dart';
 import 'package:starter/common/widgets/text/section_heading.dart';
 import 'package:starter/core/controllers/auth_controller.dart';
 import 'package:starter/usecase/user/screens/address/address.dart';
@@ -84,15 +85,7 @@ class SettingsScreen extends StatelessWidget {
                     subTitle: 'Protect your eyes with the dark mode',
                     trailing: ThemeSwitcherWidget(),
                   ),
-                  SettingsMenuTile(
-                    icon: Iconsax.global,
-                    title: 'Languages',
-                    subTitle: "Choose the language you know",
-                    trailing: IconButton(
-                      icon: const Icon(Iconsax.arrow_right, size: 28, color: AppColors.primary),
-                      onPressed: () {},
-                    ),
-                  ),
+                  LanguageSwitcherWidget(),
                   const SizedBox(height: Sizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
