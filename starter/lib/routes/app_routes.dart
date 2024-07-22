@@ -6,7 +6,7 @@ import 'package:starter/usecase/auth/screens/login/login.dart';
 import 'package:starter/usecase/auth/screens/onboarding/onboarding.dart';
 import 'package:starter/usecase/auth/screens/password_configuration/forget_password.dart';
 import 'package:starter/usecase/auth/screens/signup/signup.dart';
-import 'package:starter/usecase/main/screens/home_screen.dart';
+import 'package:starter/usecase/main/screens/home/home.dart';
 import 'package:starter/usecase/user/screens/profile/profile.dart';
 import 'package:starter/usecase/user/screens/settings/settings.dart';
 
