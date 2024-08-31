@@ -21,19 +21,19 @@ class UserProfileTile extends StatelessWidget {
 
     return ListTile(
       leading: Obx(() {
-        final networkImage = controller.user.profilePicUrl;
+        final networkImage = controller.user.value.profilePicUrl;
         final image = networkImage != null ? networkImage.toString() : ImageStrings.user;
         return controller.imageUploading.value
             ? const CustomShimmerEffect(width: 50, height: 50, radius: 50)
             : CircularImage(image: image, width: 50, height: 50, isNetworkImage: networkImage != null, padding: 0);
       }),
       title: Text(
-        controller.user.fullName,
+        controller.user.value.fullName,
         maxLines: 2,
         style: Theme.of(context).textTheme.headlineSmall!.apply(color: AppColors.white),
       ),
       subtitle: Text(
-        controller.user.email,
+        controller.user.value.email,
         style: Theme.of(context).textTheme.bodyMedium!.apply(color: AppColors.white),
       ),
       trailing: IconButton(

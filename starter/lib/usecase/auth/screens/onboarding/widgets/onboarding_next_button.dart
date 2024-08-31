@@ -6,7 +6,6 @@ import 'package:starter/usecase/auth/controllers/onboarding/onboarding_controlle
 import 'package:starter/utils/device_utility.dart';
 import 'package:starter/utils/helper_functions.dart';
 
-
 class OnBoardingNextButton extends StatelessWidget {
   const OnBoardingNextButton({
     super.key,

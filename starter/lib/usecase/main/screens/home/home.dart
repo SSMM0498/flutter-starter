@@ -18,13 +18,14 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const PrimaryHeaderContainer(
+            PrimaryHeaderContainer(
               child: Column(
                 children: [
-                  HomeAppBar(),
-                  SizedBox(height: Sizes.spaceBtwSections),
-                  SearchContainer(text: "Search items"),
-                  SizedBox(height: Sizes.spaceBtwSections),
+                  const SizedBox(height: Sizes.spaceBtwSections * 0.25),
+                  const HomeAppBar(),
+                  const SizedBox(height: Sizes.spaceBtwSections * 0.5),
+                  SearchContainer(text: localizations.search),
+                  const SizedBox(height: Sizes.spaceBtwSections * 1.5),
                 ],
               ),
             ),

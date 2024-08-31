@@ -12,7 +12,7 @@ class CustomCheckboxTheme {
       if (states.contains(WidgetState.selected)) {
         return AppColors.white;
       } else {
-        return AppColors.black;
+        return AppColors.dark;
       }
     }),
     fillColor: WidgetStateProperty.resolveWith((states) {
@@ -31,7 +31,7 @@ class CustomCheckboxTheme {
       if (states.contains(WidgetState.selected)) {
         return AppColors.white;
       } else {
-        return AppColors.black;
+        return AppColors.dark;
       }
     }),
     fillColor: WidgetStateProperty.resolveWith((states) {

@@ -12,7 +12,7 @@ class CustomOutlinedButtonTheme {
       elevation: 0,
       foregroundColor: AppColors.dark,
       side: const BorderSide(color: AppColors.borderPrimary),
-      textStyle: const TextStyle(fontSize: 16, color: AppColors.black, fontWeight: FontWeight.w600),
+      textStyle: const TextStyle(fontSize: 16, color: AppColors.dark, fontWeight: FontWeight.w600),
       padding: const EdgeInsets.symmetric(vertical: Sizes.buttonHeight, horizontal: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Sizes.buttonRadius)),
     ),

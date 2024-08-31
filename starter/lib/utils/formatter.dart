@@ -10,6 +10,30 @@ class Formatter {
     return NumberFormat.currency(locale: 'en_US', symbol: '\$').format(amount);
   }
 
+  static String extractWords(String str, int number) {
+    final splitName = str.split(" ");
+    var name = splitName.first;
+    if (splitName.length >= number) {
+      name = splitName.sublist(0, number).join(" ");
+    }
+    return name;
+  }
+
+  static String formatTitleCase(String str) {
+    if (str.isEmpty) return str;
+
+    return str.split(' ').map((word) {
+      if (word.isEmpty) return word;
+      return word[0].toUpperCase() + word.substring(1).toLowerCase();
+    }).join(' ');
+  }
+
+  String formatException(String input) {
+    // Remove punctuation, convert to lowercase, and replace spaces with hyphens
+    String result = input.replaceAll(RegExp(r'[^\w\s]'), '').toLowerCase().replaceAll(RegExp(r'\s+'), '-');
+    return result;
+  }
+
   static String formatPhoneNumber(String phoneNumber) {
     if (phoneNumber.length == 9) {
       return '${phoneNumber.substring(0, 3)} ${phoneNumber.substring(3, 6)} ${phoneNumber.substring(6)}';

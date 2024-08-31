@@ -28,6 +28,8 @@ dependencies:
   smooth_page_indicator: ^1.2.0
   cached_network_image: ^3.3.1
   shimmer: ^3.0.0
+  timezone: ^0.9.4
+  flutter_local_notifications: ^17.2.1+2
 
   # State Management
   get: ^4.6.6
@@ -40,6 +42,7 @@ dependencies:
   # Pocketbase
   pocketbase: ^0.18.1
   fetch_client: ^1.1.2
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:
@@ -56,7 +59,6 @@ flutter:
     - assets/
     - assets/fonts/
     - assets/icons/
-    - assets/logos/
     - assets/images/
     - assets/icons/app/
     - assets/icons/logos/

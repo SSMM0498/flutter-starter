@@ -4,9 +4,9 @@ import 'package:starter/common/widgets/loaders/full_screen_loader.dart';
 import 'package:starter/common/widgets/loaders/loaders.dart';
 import 'package:starter/core/controllers/network_manager.dart';
 import 'package:starter/data/repository/user_repository.dart';
-import 'package:starter/routes/routes.dart';
 import 'package:starter/usecase/user/controllers/user_controller.dart';
 import 'package:starter/utils/image_strings.dart';
+import 'package:starter/utils/text_strings.dart';
 
 class UpdateUsernameController extends GetxController {
   static UpdateUsernameController get instance => Get.find();
@@ -18,13 +18,13 @@ class UpdateUsernameController extends GetxController {
 
   @override
   void onInit() {
-    username.text = userController.user.username;
+    username.text = userController.user.value.username;
     super.onInit();
   }
 
-  Future<void> updateUsername() async {
+  Future<void> updateUsername(LoaderText updateUsername) async {
     try {
-      FullScreenLoader.openLoadingDialog('We are updating your information...', ImageStrings.docerAnimation);
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -41,13 +41,14 @@ class UpdateUsernameController extends GetxController {
         'username': username.text.trim(),
       });
 
-      userController.user.username = username.text.trim();
+      userController.user.value.username = username.text.trim();
+      userController.user.refresh();
 
       FullScreenLoader.stopLoading();
 
-      Loaders.successSnackBar(title: 'Congratulations', message: 'Your username has been updated.');
+      Loaders.successSnackBar(title: updateUsername.title, message: updateUsername.message);
 
-      Get.offNamed(Routes.userProfile);
+      Get.back();
     } catch (e) {
       FullScreenLoader.stopLoading();
       Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());

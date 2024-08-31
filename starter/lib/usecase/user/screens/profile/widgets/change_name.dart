@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/common/widgets/appbar/appbar.dart';
 import 'package:starter/usecase/user/controllers/update_name_controller.dart';
+import 'package:starter/utils/text_strings.dart';
 import 'package:starter/utils/validation.dart';
 
 class ChangeName extends StatelessWidget {
@@ -12,10 +14,12 @@ class ChangeName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(UpdateNameController());
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: CustomAppBar(
         showBackArrow: true,
-        title: Text('Change Name', style: Theme.of(context).textTheme.headlineSmall),
+        title: Text(localizations.nameChangeTitle, style: Theme.of(context).textTheme.headlineSmall),
       ),
       body: Padding(
         padding: const EdgeInsets.all(Sizes.defaultSpace),
@@ -23,7 +27,7 @@ class ChangeName extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Use real name for easy validation. This name will appear on several pages.',
+              localizations.nameChangeSubtitle,
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const SizedBox(height: Sizes.spaceBtwSections),
@@ -33,21 +37,23 @@ class ChangeName extends StatelessWidget {
                 children: [
                   TextFormField(
                     controller: controller.firstName,
-                    validator: (value) => Validator.validateEmptyText('First name', value),
+                    validator: (value) => Validator.validateEmptyText(localizations.fieldRequired(localizations.firstname), value),
                     expands: false,
-                    decoration: const InputDecoration(labelText: "First name", prefixIcon: Icon(Iconsax.user)),
+                    decoration: InputDecoration(labelText: localizations.firstname, prefixIcon: const Icon(Iconsax.user)),
                   ),
                   const SizedBox(height: Sizes.spaceBtwInputFields),
                   TextFormField(
                     controller: controller.lastName,
-                    validator: (value) => Validator.validateEmptyText('Last name', value),
+                    validator: (value) => Validator.validateEmptyText(localizations.fieldRequired(localizations.lastname), value),
                     expands: false,
-                    decoration: const InputDecoration(labelText: "Last name", prefixIcon: Icon(Iconsax.user)),
+                    decoration: InputDecoration(labelText: localizations.lastname, prefixIcon: const Icon(Iconsax.user)),
                   ),
                   const SizedBox(height: Sizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(onPressed: () => controller.updateUserName(), child: const Text('Save')),
+                    child: ElevatedButton(
+                        onPressed: () => controller.updateUserName(LoaderText(title: localizations.congratulations, message: localizations.nameUpdated)),
+                        child: Text(localizations.save)),
                   ),
                 ],
               ),

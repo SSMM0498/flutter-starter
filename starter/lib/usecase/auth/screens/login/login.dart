@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter/common/styles/sizes.dart';
 
 import 'package:starter/common/styles/spacing_styles.dart';
@@ -12,17 +13,19 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final localizations = AppLocalizations.of(context)!;
+
+    return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: SpacingStyles.paddingWithAppBarHeight,
           child: Column(
             children: [
-              LoginHeader(),
-              LoginForm(),
-              FormDivider(dividerText: "or sign in with"),
-              SizedBox(height: Sizes.spaceBtwSections),
-              SocialButtons(),
+              const LoginHeader(),
+              const LoginForm(),
+              FormDivider(dividerText: localizations.orSignInWith),
+              const SizedBox(height: Sizes.spaceBtwSections),
+              const SocialButtons(),
             ],
           ),
         ),

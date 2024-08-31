@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:starter/common/styles/colors.dart';
@@ -27,7 +26,7 @@ class OnBoardingDotNavigation extends StatelessWidget {
         ),
         controller: controller.pageController,
         onDotClicked: controller.dotNavigationClick,
-        count: 3,
+        count: 4,
       ),
     );
   }

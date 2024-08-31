@@ -11,9 +11,9 @@ class CustomAppBarTheme {
     scrolledUnderElevation: 0,
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
-    iconTheme: IconThemeData(color: AppColors.black, size: Sizes.iconMd),
-    actionsIconTheme: IconThemeData(color: AppColors.black, size: Sizes.iconMd),
-    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: AppColors.black),
+    iconTheme: IconThemeData(color: AppColors.dark, size: Sizes.iconMd),
+    actionsIconTheme: IconThemeData(color: AppColors.dark, size: Sizes.iconMd),
+    titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: AppColors.dark),
   );
   static const darkAppBarTheme = AppBarTheme(
     elevation: 0,
@@ -21,7 +21,7 @@ class CustomAppBarTheme {
     scrolledUnderElevation: 0,
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
-    iconTheme: IconThemeData(color: AppColors.black, size: Sizes.iconMd),
+    iconTheme: IconThemeData(color: AppColors.dark, size: Sizes.iconMd),
     actionsIconTheme: IconThemeData(color: AppColors.white, size: Sizes.iconMd),
     titleTextStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: AppColors.white),
   );

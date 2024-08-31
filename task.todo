@@ -39,22 +39,22 @@
   - [x] Design UI
   - [x] Integrate Pocketbase authentication for email and password login
   - [ ] Add Google, Facebook, & GitHub Sign-In options
-- [ ] Implement registration screen
+- [x] Implement registration screen
   - [x] Design UI
   - [x] Integrate Pocketbase authentication for email and password registration
 - [x] Implement forgot password screen
   - [x] Design UI
   - [x] Integrate Pocketbase password reset functionality
 - [x] Implement secure storage of user credentials and tokens
+- [x] Setup GetX Controllers for authentication state management
+  - [x] Create `AuthController` to manage user sessions
+  - [x] Implement logic to check user authentication status on app start
+  - [x] Implement sign-out functionality
 ### User Profile and Session Management
-- [ ] Implement user profile screen
-  - [ ] Design UI
-  - [ ] Display user information from Pocketbase
-- [ ] Implement user update screen
-  - [ ] Design UI
-  - [ ] Display user information from Pocketbase
-  - [ ] Integrate Pocketbase user update functionality
-- [ ] Setup GetX Controllers for authentication state management
-  - [ ] Create `AuthController` to manage user sessions
-  - [ ] Implement logic to check user authentication status on app start
-  - [ ] Implement sign-out functionality
+- [x] Implement user profile screen
+  - [x] Design UI
+  - [x] Display user information from Pocketbase
+- [x] Implement user update screen
+  - [x] Design UI
+  - [x] Display user information from Pocketbase
+  - [x] Integrate Pocketbase user update functionality

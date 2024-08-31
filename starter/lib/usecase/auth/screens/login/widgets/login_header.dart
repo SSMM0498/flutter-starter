@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/utils/helper_functions.dart';
 import 'package:starter/utils/image_strings.dart';
+import 'package:starter/utils/text_strings.dart';
 
 class LoginHeader extends StatelessWidget {
   const LoginHeader({
@@ -11,6 +13,8 @@ class LoginHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
+    final localizations = AppLocalizations.of(context)!;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +31,7 @@ class LoginHeader extends StatelessWidget {
               width: Sizes.spaceBtwItems,
             ),
             Text(
-              "Starter",
+              TextStrings.appName,
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ],
@@ -36,12 +40,12 @@ class LoginHeader extends StatelessWidget {
           height: Sizes.spaceBtwSections,
         ),
         Text(
-          "Welcome back",
+          localizations.welcomeBack,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-        const SizedBox(height: Sizes.sm),
+        const SizedBox(height: Sizes.spaceBtwItems),
         Text(
-          "Discover Limitless Choices and Unmatched Convenience.",
+          localizations.loginSubTitle,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],

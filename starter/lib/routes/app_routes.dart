@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starter/core/middleware/auth_guard.dart';
 import 'package:starter/routes/navigation_panel.dart';
@@ -36,6 +37,11 @@ class AppRoutes {
     GetPage(
       name: Routes.home,
       page: () => const HomeScreen(),
+      middlewares: [AuthGuard()],
+    ),
+    GetPage(
+      name: Routes.search,
+      page: () => Container(),
       middlewares: [AuthGuard()],
     ),
     GetPage(

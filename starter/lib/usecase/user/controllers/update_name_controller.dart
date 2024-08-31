@@ -4,9 +4,9 @@ import 'package:starter/common/widgets/loaders/full_screen_loader.dart';
 import 'package:starter/common/widgets/loaders/loaders.dart';
 import 'package:starter/core/controllers/network_manager.dart';
 import 'package:starter/data/repository/user_repository.dart';
-import 'package:starter/routes/routes.dart';
 import 'package:starter/usecase/user/controllers/user_controller.dart';
 import 'package:starter/utils/image_strings.dart';
+import 'package:starter/utils/text_strings.dart';
 
 class UpdateNameController extends GetxController {
   static UpdateNameController get instance => Get.find();
@@ -23,14 +23,14 @@ class UpdateNameController extends GetxController {
     super.onInit();
   }
 
-  Future<void> initializeNames() async {
-    firstName.text = userController.user.firstName;
-    lastName.text = userController.user.lastName;
+  void initializeNames() {
+    firstName.text = userController.user.value.firstName;
+    lastName.text = userController.user.value.lastName;
   }
 
-  Future<void> updateUserName() async {
+  Future<void> updateUserName(LoaderText updateName) async {
     try {
-      FullScreenLoader.openLoadingDialog('We are updating your information...', ImageStrings.docerAnimation);
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -47,14 +47,15 @@ class UpdateNameController extends GetxController {
 
       await userRepository.updateUserDetails(name);
 
-      userController.user.firstName = firstName.text.trim();
-      userController.user.lastName = lastName.text.trim();
+      userController.user.value.firstName = firstName.text.trim();
+      userController.user.value.lastName = lastName.text.trim();
+      userController.user.refresh();
 
       FullScreenLoader.stopLoading();
 
-      Loaders.successSnackBar(title: 'Congratulations', message: 'Your name has been updated.');
+      Loaders.successSnackBar(title: updateName.title, message: updateName.message);
 
-      Get.offNamed(Routes.userProfile);
+      Get.back();
     } catch (e) {
       FullScreenLoader.stopLoading();
       Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());

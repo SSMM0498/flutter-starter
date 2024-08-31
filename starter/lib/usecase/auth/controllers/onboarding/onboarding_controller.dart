@@ -17,10 +17,10 @@ class OnBoardingController extends GetxController {
   }
 
   void nextPage() {
-    if (currentPageIndex.value == 2) {
+    if (currentPageIndex.value == 3) {
       final storage = LocalStorage();
       storage.setIsFirstTime(false);
-      Get.offAll(const LoginScreen());
+      Get.offAll(() => const LoginScreen());
     } else {
       int page = currentPageIndex.value + 1;
       pageController.jumpToPage(page);
@@ -28,7 +28,7 @@ class OnBoardingController extends GetxController {
   }
 
   void skipPage() {
-    currentPageIndex.value = 2;
+    currentPageIndex.value = 3;
     pageController.jumpToPage(currentPageIndex.value);
   }
 }

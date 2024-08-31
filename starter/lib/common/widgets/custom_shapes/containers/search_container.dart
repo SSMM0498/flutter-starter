@@ -4,7 +4,8 @@ import 'package:starter/common/styles/colors.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/utils/device_utility.dart';
 import 'package:starter/utils/helper_functions.dart';
-
+import 'package:get/get.dart'; // Import Get for navigation
+import 'package:starter/routes/routes.dart'; // Import your routes
 
 class SearchContainer extends StatelessWidget {
   const SearchContainer({
@@ -26,6 +27,8 @@ class SearchContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final darkMode = HelperFunctions.isDarkMode(context);
+    final TextEditingController controller = TextEditingController();
+
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -44,9 +47,28 @@ class SearchContainer extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(icon, color: AppColors.darkerGrey),
+              Icon(icon, color: darkMode ? AppColors.lightGrey : AppColors.darkerGrey),
               const SizedBox(width: Sizes.spaceBtwItems),
-              Text(text, style: Theme.of(context).textTheme.bodySmall),
+              Expanded(
+                child: TextField(
+                  controller: controller,
+                  decoration: InputDecoration(
+                    hintText: text,
+                    isDense: true, // Remove extra padding
+                    contentPadding: EdgeInsets.zero, // Remove content padding
+                    errorBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    focusedErrorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    border: InputBorder.none, // Remove border
+                  ),
+                  onSubmitted: (searchText) {
+                    controller.clear();
+                    Get.toNamed(Routes.search, arguments: {'search': searchText});
+                  },
+                ),
+              ),
             ],
           ),
         ),

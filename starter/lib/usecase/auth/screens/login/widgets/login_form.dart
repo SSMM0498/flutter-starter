@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/sizes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter/common/widgets/app_checkbox/app_checkbox.dart';
 import 'package:starter/routes/routes.dart';
 import 'package:starter/usecase/auth/controllers/login/login_controller.dart';
@@ -16,6 +17,7 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
+    final localizations = AppLocalizations.of(context)!;
 
     return Form(
       key: controller.loginFormKey,
@@ -27,21 +29,24 @@ class LoginForm extends StatelessWidget {
           children: [
             TextFormField(
               controller: controller.email,
-              validator: (value) => Validator.validateEmail(value),
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.direct_right),
-                labelText: "E-mail",
+              validator: (value) => Validator.validateField(value, [
+                (value) => Validator.validateEmptyText(localizations.fieldRequired(localizations.email), value),
+                (value) => Validator.validateEmail(localizations.invalidEmail, value),
+              ]),
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Iconsax.direct_right),
+                labelText: localizations.email,
               ),
             ),
             const SizedBox(height: Sizes.spaceBtwInputFields),
             Obx(
               () => TextFormField(
                 controller: controller.password,
-                validator: (value) => Validator.validateEmptyText('Password', value),
+                validator: (value) => Validator.validateEmptyText(localizations.fieldRequired(localizations.password), value),
                 obscureText: controller.hidePassword.value,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Iconsax.password_check),
-                  labelText: "Password",
+                  labelText: localizations.password,
                   suffixIcon: IconButton(
                     onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
                     icon: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
@@ -55,14 +60,14 @@ class LoginForm extends StatelessWidget {
               children: [
                 Obx(
                   () => AppCheckbox(
-                    label: "Remember me",
+                    label: Text(localizations.rememberMe, style: Theme.of(context).textTheme.labelMedium),
                     value: controller.rememberMe.value,
                     onChanged: (value) => controller.rememberMe.value = !controller.rememberMe.value,
                   ),
                 ),
                 TextButton(
                   onPressed: () => Get.to(() => const ForgetPassword()),
-                  child: const Text("Forgot password?"),
+                  child: Text(localizations.forgotPassword),
                 ),
               ],
             ),
@@ -71,7 +76,7 @@ class LoginForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () => controller.emailAndPasswordSignIn(),
-                child: const Text("Sign in"),
+                child: Text(localizations.signIn),
               ),
             ),
             const SizedBox(height: Sizes.spaceBtwItems),
@@ -79,7 +84,7 @@ class LoginForm extends StatelessWidget {
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: () => Get.toNamed(Routes.signup),
-                child: const Text("Create account"),
+                child: Text(localizations.createAccount),
               ),
             ),
           ],

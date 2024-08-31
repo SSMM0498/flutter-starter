@@ -1,15 +1,62 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:starter/data/models/app_setting.dart';
 
 class LocalStorage {
   static const _tokenKey = 'TOKEN';
   static const _isFirstTokenKey = 'IS_FIRST_TIME';
   static const _rememberMeEmail = 'REMEMBER_ME_EMAIL';
   static const _rememberMePassword = 'REMEMBER_ME_PASSWORD';
+  final _settingsKey = 'APP_SETTINGS';
+  final _userCache = 'USER_CACHE';
 
-  final FlutterSecureStorage _storage = const FlutterSecureStorage();
+  final FlutterSecureStorage _storage = const FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+    ),
+  );
+
+  Future<String?> storageRead(String key) async {
+    try {
+      return await _storage.read(key: key);
+    } catch (e) {
+      if (e is PlatformException && e.code == 'BadPaddingException') {
+        print("🗑️ Clearing all data");
+        await _storage.deleteAll();
+      }
+    }
+    return null;
+  }
+
+  Future<void> cacheUser(String userJson) async {
+    await _storage.write(key: _userCache, value: userJson);
+    print("👏 Caching User Over $userJson");
+  }
+
+  Future<String?> getCachedUser() async {
+    return await storageRead(_userCache);
+  }
+
+  Future<AppSetting?> getAppSettings() async {
+    final settingsJson = await storageRead(_settingsKey);
+    if (settingsJson != null) {
+      return AppSetting.fromJson(jsonDecode(settingsJson));
+    }
+    return null;
+  }
+
+  Future<void> setAppSettings(AppSetting setting) async {
+    await _storage.write(key: _settingsKey, value: jsonEncode(setting.toJson()));
+  }
+
+  Future<void> deleteAppSettings() async {
+    await _storage.delete(key: _settingsKey);
+  }
 
   Future<String?> getToken() async {
-    final token = await _storage.read(key: _tokenKey);
+    final token = await storageRead(_tokenKey);
     return token;
   }
 
@@ -22,7 +69,7 @@ class LocalStorage {
   }
 
   Future<bool> getIsFirstTime() async {
-    final isFirstTime = await _storage.read(key: _isFirstTokenKey);
+    final isFirstTime = await storageRead(_isFirstTokenKey);
     return isFirstTime == 'true';
   }
 
@@ -31,7 +78,7 @@ class LocalStorage {
   }
 
   Future<void> setIsFirstTimeIfNull() async {
-    final isFirstTime = await _storage.read(key: _isFirstTokenKey);
+    final isFirstTime = await storageRead(_isFirstTokenKey);
     if (isFirstTime == null) {
       await _storage.write(key: _isFirstTokenKey, value: 'true');
     }
@@ -46,7 +93,7 @@ class LocalStorage {
   }
 
   Future<String?> getRememberMeEmail() async {
-    final email = await _storage.read(key: _rememberMeEmail);
+    final email = await storageRead(_rememberMeEmail);
     return email;
   }
 
@@ -59,7 +106,7 @@ class LocalStorage {
   }
 
   Future<String?> getRememberMePassword() async {
-    final password = await _storage.read(key: _rememberMePassword);
+    final password = await storageRead(_rememberMePassword);
     return password;
   }
 

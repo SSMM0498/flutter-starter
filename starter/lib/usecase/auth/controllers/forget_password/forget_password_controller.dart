@@ -15,7 +15,7 @@ class ForgetPasswordController extends GetxController {
 
   sendPasswordResetEmail() async {
     try {
-      FullScreenLoader.openLoadingDialog('Processing your request...', ImageStrings.docerAnimation);
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -43,7 +43,7 @@ class ForgetPasswordController extends GetxController {
 
   resendPasswordResetEmail(String email) async {
     try {
-      FullScreenLoader.openLoadingDialog('Processing your request...', ImageStrings.docerAnimation);
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {

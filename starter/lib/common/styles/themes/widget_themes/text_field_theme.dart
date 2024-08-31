@@ -9,10 +9,10 @@ class TextFormFieldTheme {
     errorMaxLines: 3,
     prefixIconColor: AppColors.darkGrey,
     suffixIconColor: AppColors.darkGrey,
-    labelStyle: const TextStyle().copyWith(fontSize: Sizes.fontSizeMd, color: AppColors.black),
-    hintStyle: const TextStyle().copyWith(fontSize: Sizes.fontSizeSm, color: AppColors.black),
+    labelStyle: const TextStyle().copyWith(fontSize: Sizes.fontSizeMd, color: AppColors.dark),
+    hintStyle: const TextStyle().copyWith(fontSize: Sizes.fontSizeSm, color: AppColors.dark),
     errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
-    floatingLabelStyle: const TextStyle().copyWith(color: AppColors.black.withOpacity(0.8)),
+    floatingLabelStyle: const TextStyle().copyWith(color: AppColors.dark.withOpacity(0.8)),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(Sizes.inputFieldRadius),
       borderSide: const BorderSide(width: 1, color: AppColors.grey),

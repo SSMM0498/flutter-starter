@@ -181,3 +181,10 @@ dart run flutter_native_splash:create
 ```sh
 dart run flutter_launcher_icons
 ```
+
+```sh
+flutter gen-l10n
+```
+
+## Inspirations
++ Elastico

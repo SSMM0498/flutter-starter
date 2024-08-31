@@ -32,7 +32,7 @@ class CircularImage extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-        color: backgroundColor ?? (HelperFunctions.isDarkMode(context) ? AppColors.black : AppColors.white),
+        color: backgroundColor ?? (HelperFunctions.isDarkMode(context) ? AppColors.dark : AppColors.white),
         borderRadius: BorderRadius.circular(100),
       ),
       child: ClipRRect(

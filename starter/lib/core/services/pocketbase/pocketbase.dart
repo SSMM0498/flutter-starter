@@ -1,24 +1,26 @@
 // pocketbase_singleton.dart
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pocketbase/pocketbase.dart';
+import 'package:starter/core/services/local_storage/local_storage.dart';
 import 'package:starter/data/models/user.dart';
-import '../local_storage/local_storage.dart';
 import 'factories/factory_mobile.dart' if (dart.library.html) 'factories/factory_web.dart';
 
 class PocketBaseSingleton {
   static final PocketBaseSingleton _instance = PocketBaseSingleton._internal();
 
-  final _pocketBaseUrl = "http://192.168.1.230:8090";
+  final _pocketBaseUrl = "https://pocketbase-mokkal.fly.dev";
 //   final _pocketBaseUrl = "http://10.0.2.2:8090";
   late final PocketBase client;
   late String _temporaryDirectory;
   final _httpClient = HttpClient();
   UserModel user = UserModel.empty();
+  late final LocalStorage storage;
 
   factory PocketBaseSingleton() {
     return _instance;
@@ -29,7 +31,7 @@ class PocketBaseSingleton {
   Future<void> initialize() async {
     debugPrint('📦 PocketbaseService init');
     try {
-      final LocalStorage storage = LocalStorage();
+      storage = LocalStorage();
 
       final token = await storage.getToken();
 
@@ -49,15 +51,21 @@ class PocketBaseSingleton {
         if (event.model is RecordModel) {
           user = UserModel.fromJson(event.model.toJson());
           user.token = event.token;
+          storage.cacheUser(json.encode(user.toJson()));
           debugPrint('🔐 Update Auth Store ${user.toJson()}');
         }
       });
 
       if (client.authStore.isValid) {
-        try {
-          await authRefresh();
-        } catch (e) {
-          client.authStore.clear();
+        final connectivityResult = await Connectivity().checkConnectivity();
+        if (connectivityResult != ConnectivityResult.none) {
+          try {
+            await authRefresh();
+          } catch (e) {
+            client.authStore.clear();
+          }
+        } else {
+          debugPrint('⚠️ No internet connection. Skipping auth refresh.');
         }
       }
     } finally {
@@ -68,7 +76,18 @@ class PocketBaseSingleton {
     }
   }
 
-  Future<RecordAuth> authRefresh() async => await client.collection('users').authRefresh();
+  Future<void> authRefresh() async {
+    final connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult != ConnectivityResult.none) {
+      await client.collection('users').authRefresh();
+    } else {
+      final cachedUser = await storage.getCachedUser();
+      if (cachedUser != null) {
+        user = UserModel.fromJson(json.decode(cachedUser));
+        client.authStore.save(user.token!, RecordModel.fromJson(user.toJson()));
+      }
+    }
+  }
 
   /// Helpers
   Uri getFileUrl(RecordModel recordModel, String fileName) => client.getFileUrl(recordModel, fileName);

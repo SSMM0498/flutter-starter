@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/sizes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter/common/widgets/appbar/appbar.dart';
 import 'package:starter/usecase/user/controllers/update_email_controller.dart';
 import 'package:starter/utils/validation.dart';
@@ -12,10 +13,12 @@ class ChangeEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(UpdateEmailController());
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: CustomAppBar(
         showBackArrow: true,
-        title: Text('Change Email', style: Theme.of(context).textTheme.headlineSmall),
+        title: Text(localizations.emailChangeTitle, style: Theme.of(context).textTheme.headlineSmall),
       ),
       body: Padding(
         padding: const EdgeInsets.all(Sizes.defaultSpace),
@@ -23,7 +26,7 @@ class ChangeEmail extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'You will automatically logout after this action.',
+              localizations.emailChangeSubtitle,
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const SizedBox(height: Sizes.spaceBtwSections),
@@ -33,14 +36,20 @@ class ChangeEmail extends StatelessWidget {
                 children: [
                   TextFormField(
                     controller: controller.email,
-                    validator: (value) => Validator.validateEmptyText('Email', value),
+                    validator: (value) => Validator.validateField(value, [
+                      (value) => Validator.validateEmptyText(localizations.fieldRequired(localizations.email), value),
+                      (value) => Validator.validateEmail(localizations.invalidEmail, value),
+                    ]),
                     expands: false,
-                    decoration: const InputDecoration(labelText: "Email", prefixIcon: Icon(Iconsax.user)),
+                    decoration: InputDecoration(
+                      labelText: localizations.email,
+                      prefixIcon: const Icon(Iconsax.user),
+                    ),
                   ),
                   const SizedBox(height: Sizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(onPressed: () => controller.updateEmail(), child: const Text('Save')),
+                    child: ElevatedButton(onPressed: () => controller.updateEmail(), child: Text(localizations.save)),
                   ),
                 ],
               ),

@@ -9,6 +9,7 @@ import 'package:starter/core/services/pocketbase/pocketbase.dart';
 import 'package:starter/data/models/user.dart';
 import 'package:starter/routes/routes.dart';
 import 'package:starter/utils/image_strings.dart';
+import 'package:starter/utils/text_strings.dart';
 
 class VerifyEmailController extends GetxController {
   VerifyEmailController({required this.email});
@@ -18,15 +19,17 @@ class VerifyEmailController extends GetxController {
 
   @override
   void onInit() {
-    sendEmailVerification(email);
+    sendEmailVerification(email: email);
     setTimerForAutoRedirect();
     super.onInit();
   }
 
-  sendEmailVerification(String email) async {
+  sendEmailVerification({required String email, LoaderText? emailText}) async {
     try {
       await AuthController.instance.sendEmailVerification(email);
-      Loaders.successSnackBar(title: 'Email Sent', message: 'Please check your inbox and verify your email.');
+      if (emailText != null) {
+        Loaders.successSnackBar(title: emailText.title, message: emailText.message);
+      }
     } catch (e) {
       Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     }
@@ -44,8 +47,6 @@ class VerifyEmailController extends GetxController {
           Get.off(
             () => SuccessScreen(
               image: ImageStrings.successfullyRegisterAnimation,
-              title: "Your Account Created",
-              subtitle: "Your account has been created successfully.",
               onPressed: () => Get.offNamed(Routes.navigationPanel),
             ),
           );
@@ -61,8 +62,6 @@ class VerifyEmailController extends GetxController {
       Get.off(
         () => SuccessScreen(
           image: ImageStrings.successfullyRegisterAnimation,
-          title: "Your Account Created",
-          subtitle: "Your account has been created successfully.",
           onPressed: () => Get.offNamed(Routes.navigationPanel),
         ),
       );

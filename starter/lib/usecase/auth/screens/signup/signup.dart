@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/common/widgets/appbar/appbar.dart';
@@ -11,25 +12,27 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: CustomAppBar(
         showBackArrow: true,
         title: Text(
-          "Let’s become a member",
+          localizations.letsBecome,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(Sizes.defaultSpace),
+          padding: const EdgeInsets.all(Sizes.defaultSpace),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SignupForm(),
-              SizedBox(height: Sizes.spaceBtwSections),
-              FormDivider(dividerText: "or sign up with"),
-              SizedBox(height: Sizes.spaceBtwSections),
-              SocialButtons(),
+              const SignupForm(),
+              const SizedBox(height: Sizes.spaceBtwSections),
+              FormDivider(dividerText: localizations.orSignUpWith),
+              const SizedBox(height: Sizes.spaceBtwSections),
+              const SocialButtons(),
             ],
           ),
         ),

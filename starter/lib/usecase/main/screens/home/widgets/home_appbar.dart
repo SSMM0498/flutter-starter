@@ -24,7 +24,7 @@ class HomeAppBar extends StatelessWidget {
               if (controller.profileLoading.value) {
                 return const CustomShimmerEffect(width: 80, height: 15);
               } else {
-                return Text(controller.user.fullName, style: Theme.of(context).textTheme.headlineSmall!.apply(color: AppColors.white));
+                return Text(controller.user.value.fullName, style: Theme.of(context).textTheme.headlineSmall!.apply(color: AppColors.light));
               }
             },
           ),

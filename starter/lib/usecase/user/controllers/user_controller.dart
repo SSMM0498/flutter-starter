@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:starter/common/styles/sizes.dart';
@@ -12,15 +14,13 @@ import 'package:starter/data/repository/user_repository.dart';
 import 'package:starter/routes/routes.dart';
 import 'package:starter/usecase/user/screens/profile/widgets/re_authenticate_user_login_form.dart';
 import 'package:starter/utils/image_strings.dart';
+import 'package:starter/utils/text_strings.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
   final profileLoading = false.obs;
-  final Rx<UserModel> _user = UserModel.empty().obs;
-
-  UserModel get user => _user.value;
-  set user(UserModel user) => _user.value = user;
+  final Rx<UserModel> user = UserModel.empty().obs;
 
   final hidePassword = true.obs;
   final imageUploading = false.obs;
@@ -41,36 +41,42 @@ class UserController extends GetxController {
       profileLoading.value = true;
       await PocketBaseSingleton().authRefresh();
       final localUser = PocketBaseSingleton().user;
-      _user(localUser);
+      user(localUser);
     } catch (e) {
-      _user(UserModel.empty());
+      user(UserModel.empty());
     } finally {
       profileLoading.value = false;
     }
   }
 
   void deleteAccountWarningPopup() {
+    final localizations = AppLocalizations.of(Get.context!)!;
+
     Get.defaultDialog(
       contentPadding: const EdgeInsets.all(Sizes.md),
-      title: 'Delete Account',
-      middleText: 'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
+      title: localizations.deleteAccount,
+      middleText: localizations.deleteAccountWarning,
       confirm: ElevatedButton(
         onPressed: () async => deleteUserAccount(),
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.red, side: const BorderSide(color: Colors.red)),
-        child: const Padding(padding: EdgeInsets.symmetric(horizontal: Sizes.lg), child: Text('Delete')),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.red,
+          side: const BorderSide(color: Colors.red),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Sizes.lg),
+          child: Text(localizations.delete),
+        ),
       ),
       cancel: OutlinedButton(
         onPressed: () => Navigator.of(Get.overlayContext!).pop(),
-        child: const Text(
-          'Cancel',
-        ),
+        child: Text(localizations.cancel),
       ),
     );
   }
 
   void deleteUserAccount() async {
     try {
-      FullScreenLoader.openLoadingDialog('Processing', ImageStrings.docerAnimation);
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -97,7 +103,7 @@ class UserController extends GetxController {
 
   Future<void> checkUserBeforeRemove() async {
     try {
-      FullScreenLoader.openLoadingDialog('Processing', ImageStrings.docerAnimation);
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -121,7 +127,7 @@ class UserController extends GetxController {
     }
   }
 
-  void uploadUserProfilePicture() async {
+  void uploadUserProfilePicture(LoaderText uploadText) async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
       if (image != null) {
@@ -129,10 +135,10 @@ class UserController extends GetxController {
 
         final imageUrl = await userRepository.uploadAvatar('Users/Images/Profile/', image);
 
-        _user.value.avatar = imageUrl;
-        _user.refresh();
+        user.value.avatar = imageUrl;
+        user.refresh();
 
-        Loaders.successSnackBar(title: 'Congratulations', message: 'Your Profile Image has been updated!');
+        Loaders.successSnackBar(title: uploadText.title, message: uploadText.message);
       }
     } catch (e) {
       Loaders.errorSnackBar(title: 'Oh Snap', message: 'Something went wrong: $e');

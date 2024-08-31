@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:starter/common/styles/colors.dart';
 import 'package:starter/common/styles/sizes.dart';

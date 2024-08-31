@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -6,6 +5,7 @@ import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/common/widgets/appbar/appbar.dart';
 import 'package:starter/usecase/auth/controllers/forget_password/forget_password_controller.dart';
 import 'package:starter/utils/validation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});
@@ -13,6 +13,8 @@ class ForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ForgetPasswordController());
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: const CustomAppBar(showBackArrow: true),
       body: Padding(
@@ -34,7 +36,10 @@ class ForgetPassword extends StatelessWidget {
               key: controller.forgetPasswordFormKey,
               child: TextFormField(
                 controller: controller.email,
-                validator: Validator.validateEmail,
+                validator: (value) => Validator.validateField(value, [
+                  (value) => Validator.validateEmptyText(localizations.fieldRequired(localizations.email), value),
+                  (value) => Validator.validateEmail(localizations.invalidEmail, value),
+                ]),
                 decoration: const InputDecoration(
                   labelText: "E-Mail",
                   prefixIcon: Icon(Iconsax.direct_right),

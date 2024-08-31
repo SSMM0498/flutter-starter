@@ -2,6 +2,7 @@ class Routes {
   static const navigationPanel = '/';
   static const home = '/home';
   static const settings = '/settings';
+  static const search = '/search/:search';
   static const userProfile = '/user-profile';
   static const signup = '/signup';
   static const signupSuccess = '/signup-success';

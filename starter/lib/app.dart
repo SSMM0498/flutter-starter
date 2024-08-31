@@ -3,7 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:starter/core/controllers/network_manager.dart';
-import 'package:starter/core/controllers/theme_controller.dart';
+import 'package:starter/core/controllers/app_settings_controller.dart';
+import 'package:starter/core/controllers/notification_controller.dart';
 import 'package:starter/data/repository/user_repository.dart';
 import 'package:starter/routes/app_routes.dart';
 
@@ -15,11 +16,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.put(ThemeController());
+    final appSettingController = Get.put(AppSettingController());
+
     return GetMaterialApp(
       title: 'Starter',
       debugShowCheckedModeBanner: false,
-      themeMode: themeController.themeMode, // Use the current theme mode from the controller
+      themeMode: appSettingController.themeMode, // Use the current theme mode from the controller
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       localizationsDelegates: const [
@@ -27,10 +29,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en', ''), // English
-        Locale('fr', ''), // French
-      ],
+      supportedLocales: appSettingController.availableLanguage.map((e) => Locale(e.code)),
       initialBinding: GeneralBindings(),
       initialRoute: initialRoute,
       getPages: AppRoutes.pages,
@@ -42,6 +41,7 @@ class GeneralBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(NetworkManager());
+    Get.put(NotificationController());
     Get.put(UserRepository());
   }
 }

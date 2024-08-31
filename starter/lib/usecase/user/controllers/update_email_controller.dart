@@ -18,13 +18,13 @@ class UpdateEmailController extends GetxController {
 
   @override
   void onInit() {
-    email.text = userController.user.email;
+    email.text = userController.user.value.email;
     super.onInit();
   }
 
   Future<void> updateEmail() async {
     try {
-      FullScreenLoader.openLoadingDialog('We are updating your information...', ImageStrings.docerAnimation);
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -37,7 +37,7 @@ class UpdateEmailController extends GetxController {
         return;
       }
 
-      Get.off(VerifyChangedEmailScreen(email: email.text.trim()));
+      Get.to(VerifyChangedEmailScreen(email: email.text.trim()));
     } catch (e) {
       FullScreenLoader.stopLoading();
       Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());

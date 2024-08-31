@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starter/common/widgets/loaders/full_screen_loader.dart';
@@ -6,6 +7,24 @@ import 'package:starter/core/controllers/auth_controller.dart';
 import 'package:starter/core/controllers/network_manager.dart';
 import 'package:starter/usecase/auth/screens/signup/verify_email.dart';
 import 'package:starter/utils/image_strings.dart';
+
+class SignupTexts {
+  String passwordConfirmation;
+  String passwordConfirmationMessage;
+  String acceptPolicy;
+  String acceptPolicyMessage;
+  String congratulations;
+  String congratulationVerifyMail;
+
+  SignupTexts({
+    required this.passwordConfirmation,
+    required this.passwordConfirmationMessage,
+    required this.acceptPolicy,
+    required this.acceptPolicyMessage,
+    required this.congratulations,
+    required this.congratulationVerifyMail,
+  });
+}
 
 class SignupController extends GetxController {
   static SignupController get instance => Get.find();
@@ -22,10 +41,10 @@ class SignupController extends GetxController {
   final phoneNumber = TextEditingController();
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 
-  void signup() async {
+  void signup(SignupTexts signupText) async {
     try {
       // Show loading dialog
-      FullScreenLoader.openLoadingDialog('We are processing your information...', ImageStrings.docerAnimation);
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
 
       // Check if user is connected to the internet
       final isConnected = await NetworkManager.instance.isConnected();
@@ -43,16 +62,14 @@ class SignupController extends GetxController {
       // Check if user has accepted the privacy policy
       if (!privacyPolicy.value) {
         FullScreenLoader.stopLoading();
-        Loaders.warningSnackBar(
-            title: 'Accept Privacy Policy', message: 'In order to create account, you must have to read and accept the Privacy Policy & Terms of Use.');
+        Loaders.warningSnackBar(title: signupText.acceptPolicy, message: signupText.acceptPolicyMessage);
         return;
       }
 
       // Check if passwords are identic
       if (password.text.trim() != confirmPassword.text.trim()) {
         FullScreenLoader.stopLoading();
-        Loaders.warningSnackBar(
-            title: 'Password Confirmation', message: 'The password confirmation does not match.');
+        Loaders.warningSnackBar(title: signupText.passwordConfirmation, message: signupText.passwordConfirmationMessage);
         return;
       }
 
@@ -71,7 +88,7 @@ class SignupController extends GetxController {
 
       // Go to verify email screen
       FullScreenLoader.stopLoading();
-      Loaders.successSnackBar(title: 'Congratulations', message: 'Your account has been created! Verify email to continue.');
+      Loaders.successSnackBar(title: signupText.congratulations, message: signupText.congratulationVerifyMail);
       Get.to(() => VerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
       FullScreenLoader.stopLoading();

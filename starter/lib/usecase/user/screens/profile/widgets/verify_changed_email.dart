@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starter/common/styles/sizes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter/core/controllers/auth_controller.dart';
 import 'package:starter/usecase/user/controllers/verify_changed_email_controller.dart';
 import 'package:starter/utils/helper_functions.dart';
 import 'package:starter/utils/image_strings.dart';
+import 'package:starter/utils/text_strings.dart';
 
 class VerifyChangedEmailScreen extends StatelessWidget {
   const VerifyChangedEmailScreen({super.key, required this.email});
@@ -15,6 +17,8 @@ class VerifyChangedEmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(VerifyChangedEmailController(email: email));
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -36,7 +40,7 @@ class VerifyChangedEmailScreen extends StatelessWidget {
               ),
               const SizedBox(height: Sizes.spaceBtwSections),
               Text(
-                "Verify your changed email",
+                localizations.verifyEmail,
                 style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
@@ -48,7 +52,7 @@ class VerifyChangedEmailScreen extends StatelessWidget {
               ),
               const SizedBox(height: Sizes.spaceBtwItems),
               Text(
-                "We have sent a verification link to your new email. Please verify your email to continue.",
+                localizations.verifyEmailMessage,
                 style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
@@ -57,13 +61,16 @@ class VerifyChangedEmailScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () => AuthController.instance.logout(),
-                  child: const Text("Logout"),
+                  child: Text(localizations.logout),
                 ),
               ),
               const SizedBox(height: Sizes.spaceBtwItems),
               SizedBox(
                 width: double.infinity,
-                child: TextButton(onPressed: () => controller.sendEmailVerification(email), child: const Text("Resend email")),
+                child: TextButton(
+                    onPressed: () => controller.sendEmailVerification(
+                        email: email, changeEmailText: LoaderText(title: localizations.verifyEmail, message: localizations.changeEmailMail)),
+                    child: Text(localizations.resendEmail)),
               ),
             ],
           ),

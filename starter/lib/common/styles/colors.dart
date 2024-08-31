@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // App theme colors
-  static const Color primary = Color(0xFF6A3DE8);
-  static const Color darkPrimary = Color(0xFF331488);
+  static const Color primary = Color(0xFF3DE87C);
+  static const Color darkPrimary = Color(0xFF3BC472);
+  static const Color linearPurple1 = Color(0xFF60FE97);
+  static const Color linearPurple2 = primary;
   static const Color secondary = Color(0xFFE2C537);
   static const Color darkSecondary = Color(0xFFD3B51D);
   static const Color accent = Color(0xFFb0c7ff);
@@ -15,7 +17,7 @@ class AppColors {
 
   // Background colors
   static const Color light = Color(0xFFF6F6F6);
-  static const Color dark = Color(0xFF272727);
+  static const Color dark = Color(0xFF011240);
   static const Color primaryBackground = Color(0xFFF3F5FF);
 
   // Background Container colors
@@ -33,7 +35,8 @@ class AppColors {
 
   // Error and validation colors
   static const Color error = Color(0xFFD32F2F);
-  static const Color success = Color(0xFF388E3C);
+  static const Color success = Color(0xFF4DCE54);
+  static const Color darkSuccess = Color(0xFF39AA57);
   static const Color warning = Color(0xFFF57C00);
   static const Color info = Color(0xFF1976D2);
 

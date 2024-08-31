@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppCheckbox extends StatelessWidget {
-  final String label;
+  final Widget label;
   final bool value;
   final void Function(bool?) onChanged;
-  final TextStyle? labelStyle;
 
-  const AppCheckbox({super.key, required this.label, required this.value, required this.onChanged, this.labelStyle});
+  const AppCheckbox({super.key, required this.label, required this.value, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class AppCheckbox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Checkbox(value: value, onChanged: onChanged),
-          Text(label, style: labelStyle),
+          label,
         ],
       ),
     );

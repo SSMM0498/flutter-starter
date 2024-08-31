@@ -6,7 +6,7 @@ class CustomChipTheme {
 
   static ChipThemeData lightChipTheme = ChipThemeData(
     disabledColor: AppColors.grey.withOpacity(0.4),
-    labelStyle: const TextStyle(color: AppColors.black),
+    labelStyle: const TextStyle(color: AppColors.dark),
     selectedColor: AppColors.primary,
     padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12),
     checkmarkColor: AppColors.white,

@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/core/controllers/auth_controller.dart';
 import 'package:starter/usecase/auth/controllers/verify_email/verify_email_controller.dart';
 import 'package:starter/utils/helper_functions.dart';
 import 'package:starter/utils/image_strings.dart';
+import 'package:starter/utils/text_strings.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
   const VerifyEmailScreen({super.key, required this.email});
@@ -15,6 +17,8 @@ class VerifyEmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(VerifyEmailController(email: email));
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -36,7 +40,7 @@ class VerifyEmailScreen extends StatelessWidget {
               ),
               const SizedBox(height: Sizes.spaceBtwSections),
               Text(
-                "Verify your email",
+                localizations.emailVerification,
                 style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
@@ -48,7 +52,7 @@ class VerifyEmailScreen extends StatelessWidget {
               ),
               const SizedBox(height: Sizes.spaceBtwItems),
               Text(
-                "We have sent a verification link to your email. Please verify your email to continue.",
+                localizations.verifyEmailMessage,
                 style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
@@ -57,13 +61,13 @@ class VerifyEmailScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () => controller.checkEmailVerificationStatus(),
-                  child: const Text("Continue"),
+                  child: Text(localizations.continueText),
                 ),
               ),
               const SizedBox(height: Sizes.spaceBtwItems),
               SizedBox(
                 width: double.infinity,
-                child: TextButton(onPressed: () => controller.sendEmailVerification(email), child: const Text("Resend email")),
+                child: TextButton(onPressed: () => controller.sendEmailVerification(email: email, emailText: LoaderText(title: localizations.emailSent, message: localizations.changeEmailMail)), child: Text(localizations.resendEmail)),
               ),
             ],
           ),

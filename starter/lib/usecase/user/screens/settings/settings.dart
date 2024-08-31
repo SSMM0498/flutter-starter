@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/colors.dart';
 import 'package:starter/common/styles/sizes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter/common/widgets/appbar/appbar.dart';
 import 'package:starter/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:starter/common/widgets/list_tiles/settings_menu_tile.dart';
@@ -19,6 +20,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -27,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CustomAppBar(
-                    title: Text('Account', style: Theme.of(context).textTheme.headlineMedium!.apply(color: AppColors.white)),
+                    title: Text(localizations.account, style: Theme.of(context).textTheme.headlineMedium!.apply(color: AppColors.white)),
                   ),
                   UserProfileTile(onPressed: () => Get.to(() => const ProfileScreen())),
                   const SizedBox(height: Sizes.spaceBtwSections),
@@ -39,57 +42,57 @@ class SettingsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // Account Settings
-                  const SectionHeading(title: 'Account Settings', showActionButton: false),
+                  SectionHeading(title: localizations.accountSettings, showActionButton: false),
                   const SizedBox(height: Sizes.spaceBtwItems),
                   SettingsMenuTile(
                     icon: Iconsax.safe_home,
-                    title: 'My Addresses',
-                    subTitle: 'Set shopping delivery address',
+                    title: localizations.myAddresses,
+                    subTitle: localizations.myAddressesSubtitle,
                     onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
-                  SettingsMenuTile(
-                    icon: Iconsax.shopping_cart,
-                    title: 'My Cart',
-                    subTitle: 'Add, remove products and move to checkout',
-                    onTap: () {},
-                  ),
-                  SettingsMenuTile(
-                    icon: Iconsax.bag_tick,
-                    title: 'My Orders',
-                    subTitle: 'In-progress and Completed Orders',
-                    onTap: () {},
-                  ),
-                  const SettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subTitle: 'Withdraw balance to registered bank account'),
-                  const SettingsMenuTile(icon: Iconsax.discount_shape, title: 'My Coupons', subTitle: 'List of all the discounted coupons'),
-                  const SettingsMenuTile(icon: Iconsax.notification, title: 'Notifications', subTitle: 'Set any kind of notification message'),
-                  const SettingsMenuTile(icon: Iconsax.security_card, title: 'Account Privacy', subTitle: 'Manage data usage and connected accounts'),
+                  //   SettingsMenuTile(
+                  //     icon: Iconsax.shopping_cart,
+                  //     title: 'My Cart',
+                  //     subTitle: 'Add, remove products and move to checkout',
+                  //     onTap: () {},
+                  //   ),
+                  //   SettingsMenuTile(
+                  //     icon: Iconsax.bag_tick,
+                  //     title: 'My Orders',
+                  //     subTitle: 'In-progress and Completed Orders',
+                  //     onTap: () {},
+                  //   ),
+                  //   const SettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subTitle: 'Withdraw balance to registered bank account'),
+                  //   const SettingsMenuTile(icon: Iconsax.discount_shape, title: 'My Coupons', subTitle: 'List of all the discounted coupons'),
+                  SettingsMenuTile(icon: Iconsax.notification, title: localizations.notifications, subTitle: localizations.notificationsSubtitle),
+                  SettingsMenuTile(icon: Iconsax.security_card, title: localizations.accountPrivacy, subTitle: localizations.accountPrivacySubtitle),
                   const SizedBox(height: Sizes.spaceBtwSections),
                   // App Settings
-                  const SectionHeading(title: 'App Settings', showActionButton: false),
+                  SectionHeading(title: localizations.appSettings, showActionButton: false),
                   const SizedBox(height: Sizes.spaceBtwItems),
                   SettingsMenuTile(
                     icon: Iconsax.document_upload,
-                    title: 'Load Data',
-                    subTitle: 'Upload Data to your Cloud Firebase',
+                    title: localizations.loadData,
+                    subTitle: localizations.loadDataSubtitle,
                     onTap: () {},
                   ),
-                  SettingsMenuTile(
-                    icon: Iconsax.location,
-                    title: 'Geolocation',
-                    subTitle: 'Set recommendation based on location',
-                    trailing: Switch(value: true, onChanged: (value) {}),
-                  ),
+                //   SettingsMenuTile(
+                //     icon: Iconsax.location,
+                //     title: 'Geolocation',
+                //     subTitle: 'Set recommendation based on location',
+                //     trailing: Switch(value: true, onChanged: (value) {}),
+                //   ),
                   SettingsMenuTile(
                     icon: Iconsax.moon,
-                    title: 'Dark Mode',
-                    subTitle: 'Protect your eyes with the dark mode',
+                    title: localizations.darkMode,
+                    subTitle: localizations.darkModeSubtitle,
                     trailing: ThemeSwitcherWidget(),
                   ),
                   LanguageSwitcherWidget(),
                   const SizedBox(height: Sizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
-                    child: OutlinedButton(onPressed: () => AuthController.instance.logout(), child: const Text('Logout')),
+                    child: OutlinedButton(onPressed: () => AuthController.instance.logout(), child: Text(localizations.logout)),
                   ),
                   const SizedBox(height: Sizes.spaceBtwSections * 2.5),
                 ],

@@ -73,7 +73,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> _clearUserInfo() async {
-    UserController.instance.user = UserModel.empty();
+    UserController.instance.user.value = UserModel.empty();
     pb.authStore.clear();
   }
 }

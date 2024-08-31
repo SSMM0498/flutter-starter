@@ -109,7 +109,7 @@ class AddressController extends GetxController {
 
   Future addNewAddress() async {
     try {
-      FullScreenLoader.openLoadingDialog('Storing Address...', ImageStrings.docerAnimation);
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
