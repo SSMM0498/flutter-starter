@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:starter/common/styles/colors.dart';
 import 'package:starter/common/widgets/custom_shapes/containers/circular_container.dart';

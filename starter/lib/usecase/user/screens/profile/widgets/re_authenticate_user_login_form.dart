@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/common/widgets/appbar/appbar.dart';
 import 'package:starter/usecase/user/controllers/user_controller.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/utils/validation.dart';
 
 class ReAuthLoginForm extends StatelessWidget {

@@ -62,7 +62,7 @@ class LocalNotificationService {
 
   NotificationDetails _notificationDetails(String channelName) {
     final androidNotificationDetails = AndroidNotificationDetails(
-      'mokkal-id',
+      'starter-app-id',
       channelName,
       channelDescription: 'your channel description',
       importance: Importance.max,
@@ -85,7 +85,7 @@ class LocalNotificationService {
     required String body,
     required String payload,
   }) async {
-    final notificationDetails = _notificationDetails('mokkal_simple_notif');
+    final notificationDetails = _notificationDetails('starter-app_simple_notif');
     await _localNotificationsPlugin.show(
       0,
       title,
@@ -102,7 +102,7 @@ class LocalNotificationService {
     required String body,
     required String payload,
   }) async {
-    final notificationDetails = _notificationDetails('mokkal_periodic_notif');
+    final notificationDetails = _notificationDetails('starter-app_periodic_notif');
     await _localNotificationsPlugin.periodicallyShow(
       id,
       title,
@@ -122,7 +122,7 @@ class LocalNotificationService {
     required String payload,
     required tz.TZDateTime scheduledDate,
   }) async {
-    final notificationDetails = _notificationDetails('mokkal_schedule_notif');
+    final notificationDetails = _notificationDetails('starter-app_schedule_notif');
     await _localNotificationsPlugin.zonedSchedule(
       id,
       title,

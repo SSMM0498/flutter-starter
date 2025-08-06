@@ -14,8 +14,8 @@ import 'factories/factory_mobile.dart' if (dart.library.html) 'factories/factory
 class PocketBaseSingleton {
   static final PocketBaseSingleton _instance = PocketBaseSingleton._internal();
 
-  final _pocketBaseUrl = "https://pocketbase-mokkal.fly.dev";
-//   final _pocketBaseUrl = "http://10.0.2.2:8090";
+//   final _pocketBaseUrl = "https://pocketbase-starter.fly.dev/";
+  final _pocketBaseUrl = "http://192.168.1.17:8090/";
   late final PocketBase client;
   late String _temporaryDirectory;
   final _httpClient = HttpClient();

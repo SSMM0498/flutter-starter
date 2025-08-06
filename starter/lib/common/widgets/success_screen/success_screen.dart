@@ -1,7 +1,7 @@
 import 'package:starter/common/styles/spacing_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/utils/helper_functions.dart';
 

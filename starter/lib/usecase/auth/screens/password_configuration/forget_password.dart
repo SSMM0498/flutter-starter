@@ -5,7 +5,7 @@ import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/common/widgets/appbar/appbar.dart';
 import 'package:starter/usecase/auth/controllers/forget_password/forget_password_controller.dart';
 import 'package:starter/utils/validation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});

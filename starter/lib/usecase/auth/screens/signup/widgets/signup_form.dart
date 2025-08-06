@@ -5,7 +5,7 @@ import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/usecase/auth/controllers/signup/signup_controller.dart';
 import 'package:starter/usecase/auth/screens/signup/widgets/terms_conditions_checkbox.dart';
 import 'package:starter/utils/validation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({super.key});

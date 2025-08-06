@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starter/common/styles/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/common/widgets/app_checkbox/app_checkbox.dart';
 import 'package:starter/usecase/auth/controllers/signup/signup_controller.dart';
 import 'package:starter/utils/device_utility.dart';

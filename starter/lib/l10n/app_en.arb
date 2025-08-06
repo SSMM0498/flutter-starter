@@ -1,4 +1,8 @@
 {
+  "@@locale": "en",
+  "home": "Home",
+  "library": "Library",
+  "category": "Category",
   "search": "Search a item",
   "searchTitle": "Search",
   "failedToAuthenticate": "Failed to authenticate.",

@@ -1,60 +1,110 @@
-# Detailed Flutter Starter Template TODO List
+### **Global Roadmap: The Composable Flutter Super-Starter (Name-Only View)**
 
-## Custom Icon Launcher and Splash Screen
-- [x] Design app icon and splash screen assets
-- [x] Add app icon assets to `assets/icons` directory
-- [x] Add splash screen assets to `assets/splash` directory
-- [x] Configure `flutter_launcher_icons` in `pubspec.yaml` with paths to app icon assets
-- [x] Run `flutter pub run flutter_launcher_icons:main` to generate app icons for iOS and Android
-- [x] Configure `flutter_native_splash` in `pubspec.yaml` with paths to splash screen assets and desired background color
-- [x] Run `flutter pub run flutter_native_splash:create` to generate splash screens for iOS and Android
+#### **Phase 0: Foundation & Core Refactoring**
+* [ ]  **0.1: Git & Repository Initialization**
+    * [x] 0.1.1: Initialize Git Repository
+    * [ ] 0.1.2: Configure `main` as Protected Branch
+    * [x] 0.1.3: Create Initial `feature/*` Branches
+    * [x] 0.1.4: Create `/docs` Directory Structure
 
-## Internationalization (i18n) Setup
-- [x] Add `intl` package to `pubspec.yaml`
-- [x] Create `lib/l10n` directory for localization files
-- [x] Add `arb` files for each supported language in `lib/l10n` (e.g., `app_en.arb`, `app_fr.arb`)
-- [x] Configure `flutter_localizations` in `pubspec.yaml` to enable internationalization support
-- [x] Setup `AppLocalizations` class in `lib/l10n` to load and manage translations
-- [x] Implement logic in `main.dart` to detect and set the device's locale or allow users to manually select their preferred language
-- [x] Implement language switcher logic in settings to allow users to change the app's language
+* [ ]  **0.2: Core Architectural Refinement**
+    * [ ] 0.2.1: Implement Environment Configuration (`.env`)
+    * [ ] 0.2.2: Refactor `PocketBaseSingleton` to be Stateless
+    * [ ] 0.2.3: Centralize Dependency Injection (`InitialBinding`)
+    * [ ] 0.2.4: Refactor `UserController` as Single Source of Truth
+    * [ ] 0.2.5: Create `ApiHelper` Utility
 
-## Basic Theme Setup
-- [x] Create `theme.dart` in `lib/common/styles` directory
-- [x] Define global theme data for light and dark themes (colors, typography, button styles, etc.)
-- [x] Configure `MaterialApp` in `main.dart` to use the defined themes
-- [x] Implement theme switcher logic in settings to allow users to toggle between light and dark themes
+* [ ]  **0.3: Core UI Shell & Navigation**
+    * [ ] 0.3.1: Create Minimal `AppRoutes`
+    * [ ] 0.3.2: Implement `NavigationPanel` with Placeholders
+    * [ ] 0.3.3: Create Minimal `LoginScreen`
+    * [ ] 0.3.4: Create Minimal `SettingsScreen`
 
-## Authentication Flow
-### Setup Pocketbase and GetX
-- [x] Add Pocketbase to the project (follow Pocketbase's official setup guide for Flutter)
-- [x] Initialize Pocketbase in `main.dart`
-- [x] Add `flutter_secure_storage` to `pubspec.yaml`
-- [x] Add GetX to `pubspec.yaml` for state management and navigation
-### Implement Authentication Screens
-- [x] Create `authentication` directory under `lib/features`
-- [x] Implement onboarding screen in `lib/features/authentication/onboarding`
-  - [x] Design UI
-  - [x] Make onboarding screens appears once
-- [ ] Implement login screen in `lib/features/authentication/screens`
-  - [x] Design UI
-  - [x] Integrate Pocketbase authentication for email and password login
-  - [ ] Add Google, Facebook, & GitHub Sign-In options
-- [x] Implement registration screen
-  - [x] Design UI
-  - [x] Integrate Pocketbase authentication for email and password registration
-- [x] Implement forgot password screen
-  - [x] Design UI
-  - [x] Integrate Pocketbase password reset functionality
-- [x] Implement secure storage of user credentials and tokens
-- [x] Setup GetX Controllers for authentication state management
-  - [x] Create `AuthController` to manage user sessions
-  - [x] Implement logic to check user authentication status on app start
-  - [x] Implement sign-out functionality
-### User Profile and Session Management
-- [x] Implement user profile screen
-  - [x] Design UI
-  - [x] Display user information from Pocketbase
-- [x] Implement user update screen
-  - [x] Design UI
-  - [x] Display user information from Pocketbase
-  - [x] Integrate Pocketbase user update functionality
+* [ ]  **0.4: Core Documentation**
+    * [ ] 0.4.1: Write Root `README.md` (Project Philosophy & Workflow)
+    * [ ] 0.4.2: Create Documentation Template & Placeholder Files
+
+---
+
+#### **Phase 1: Foundational Feature Development**
+* [ ]  **1.1: `feature/device-access` Module**
+    * [ ] 1.1.1: Code Implementation (Services & Permissions)
+    * [ ] 1.1.2: Documentation
+
+* [ ]  **1.2: `feature/user-interaction` Module**
+    * [ ] 1.2.1: Code Implementation (Models, Repos, Controllers, UI)
+    * [ ] 1.2.2: Define PocketBase Schema
+    * [ ] 1.2.3: Documentation
+
+* [ ]  **1.3: `feature/content-management` Module**
+    * [ ] 1.3.1: Code Implementation (Models, Repos, Controllers, UI)
+    * [ ] 1.3.2: Define PocketBase Schema
+    * [ ] 1.3.3: Documentation
+
+* [ ]  **1.4: Maintenance & First Demo Build**
+    * [ ] 1.4.1: Rebase All Completed Feature Branches
+    * [ ] 1.4.2: Create `project/social-demo-v1` Branch
+    * [ ] 1.4.3: Merge Foundational Features
+    * [ ] 1.4.4: Perform Manual UI Integration & Validation
+
+---
+
+#### **Phase 2: Expanding Capabilities**
+* [ ]  **2.1: `feature/maps-geospatial` Module**
+    * [ ] 2.1.1: Code Implementation (Services, Controllers, UI)
+    * [ ] 2.1.2: Documentation
+
+* [ ]  **2.2: `feature/multimedia` Module**
+    * [ ] 2.2.1: Code Implementation (Services, UI)
+    * [ ] 2.2.2: Documentation
+
+* [ ]  **2.3: `feature/moderation` Module**
+    * [ ] 2.3.1: Code Implementation (Models, Repos, UI)
+    * [ ] 2.3.2: Define PocketBase Schema
+    * [ ] 2.3.3: Documentation
+
+* [ ]  **2.4: `feature/scheduling` Module**
+    * [ ] 2.4.1: Code Implementation (Models, Controllers, UI)
+    * [ ] 2.4.2: Define PocketBase Schema
+    * [ ] 2.4.3: Documentation
+
+* [ ]  **2.5: Maintenance & Kitchen-Sink Demo**
+    * [ ] 2.5.1: Rebase All Feature Branches
+    * [ ] 2.5.2: Create `project/kitchen-sink-demo-v1` Branch
+    * [ ] 2.5.3: Merge All Completed Features
+    * [ ] 2.5.4: Perform Full UI Integration
+
+---
+
+#### **Phase 3: Commercial & Real-Time Features**
+* [ ]  **3.1: `feature/monetization` Module**
+    * [ ] 3.1.1: Code Implementation (Services, UI)
+    * [ ] 3.1.2: Define PocketBase Schema & Webhooks
+    * [ ] 3.1.3: Documentation (incl. App/Play Store Setup)
+
+* [ ]  **3.2: `feature/calling` Module**
+    * [ ] 3.2.1: Code Implementation (Signaling, Controllers, UI)
+    * [ ] 3.2.2: Documentation (Expert Level)
+
+* [ ]  **3.3: Documentation Enhancement**
+    * [ ] 3.3.1: Write "Recipe" Style Guides
+    * [ ] 3.3.2: Review and Refine All Existing Documentation
+
+---
+
+#### **Phase 4: Long-Term Maturation & Ecosystem**
+* [ ]  **4.1: Comprehensive Testing**
+    * [ ] 4.1.1: Add Unit & Widget Tests for Core (`main`)
+    * [ ] 4.1.2: Add Unit & Widget Tests for Feature Branches
+
+* [ ]  **4.2: CI/CD Automation**
+    * [ ] 4.2.1: Implement CI Workflow (Lint, Test)
+    * [ ] 4.2.2: (Advanced) Implement Rebase Reminder Workflow
+
+* [ ]  **4.3: Versioning and Release Management**
+    * [ ] 4.3.1: Create Git Tags for Core Releases
+    * [ ] 4.3.2: Document Versioning Strategy in `README.md`
+
+* [ ]  **4.4: Ongoing Maintenance Loop**
+    * [ ] 4.4.1: Schedule Regular Dependency Updates on `main`
+    * [ ] 4.4.2: Schedule Regular Rebase of all `feature/*` Branches

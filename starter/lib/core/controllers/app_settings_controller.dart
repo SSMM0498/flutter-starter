@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/common/styles/colors.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/common/widgets/custom_shapes/containers/rounded_container.dart';
@@ -50,7 +50,6 @@ class AppSettingController extends GetxController {
       themeMode = settings.theme == ThemeMode.light.toString() ? ThemeMode.light : ThemeMode.dark;
       locale = Locale(settings.language, '');
       fontScaleFactor.value = settings.fontScaleFactor;
-      playingSpeed.value = settings.playingSpeed;
       Get.changeThemeMode(themeMode);
       Get.updateLocale(locale);
     } else {
@@ -58,7 +57,6 @@ class AppSettingController extends GetxController {
         theme: themeMode.toString(),
         language: locale.languageCode,
         fontScaleFactor: fontScaleFactor.value,
-        playingSpeed: playingSpeed.value,
       ));
     }
   }
@@ -71,7 +69,6 @@ class AppSettingController extends GetxController {
       theme: themeMode.toString(),
       language: locale.languageCode,
       fontScaleFactor: fontScaleFactor.value,
-      playingSpeed: playingSpeed.value,
     ));
   }
 
@@ -83,7 +80,6 @@ class AppSettingController extends GetxController {
       theme: themeMode.toString(),
       language: locale.languageCode,
       fontScaleFactor: fontScaleFactor.value,
-      playingSpeed: playingSpeed.value,
     ));
   }
 
@@ -93,7 +89,6 @@ class AppSettingController extends GetxController {
       theme: themeMode.toString(),
       language: locale.languageCode,
       fontScaleFactor: fontScaleFactor.value,
-      playingSpeed: playingSpeed.value,
     ));
   }
 
@@ -104,7 +99,6 @@ class AppSettingController extends GetxController {
       theme: themeMode.toString(),
       language: locale.languageCode,
       fontScaleFactor: fontScaleFactor.value,
-      playingSpeed: playingSpeed.value,
     ));
   }
 

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starter/common/styles/sizes.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/core/controllers/auth_controller.dart';
 import 'package:starter/usecase/user/controllers/verify_changed_email_controller.dart';
 import 'package:starter/utils/helper_functions.dart';

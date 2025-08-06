@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/colors.dart';
 import 'package:starter/common/styles/sizes.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/common/widgets/appbar/appbar.dart';
 import 'package:starter/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:starter/common/widgets/list_tiles/settings_menu_tile.dart';
@@ -50,20 +50,20 @@ class SettingsScreen extends StatelessWidget {
                     subTitle: localizations.myAddressesSubtitle,
                     onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
-                  //   SettingsMenuTile(
-                  //     icon: Iconsax.shopping_cart,
-                  //     title: 'My Cart',
-                  //     subTitle: 'Add, remove products and move to checkout',
-                  //     onTap: () {},
-                  //   ),
-                  //   SettingsMenuTile(
-                  //     icon: Iconsax.bag_tick,
-                  //     title: 'My Orders',
-                  //     subTitle: 'In-progress and Completed Orders',
-                  //     onTap: () {},
-                  //   ),
-                  //   const SettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subTitle: 'Withdraw balance to registered bank account'),
-                  //   const SettingsMenuTile(icon: Iconsax.discount_shape, title: 'My Coupons', subTitle: 'List of all the discounted coupons'),
+                    SettingsMenuTile(
+                      icon: Iconsax.shopping_cart,
+                      title: 'My Cart',
+                      subTitle: 'Add, remove products and move to checkout',
+                      onTap: () {},
+                    ),
+                    SettingsMenuTile(
+                      icon: Iconsax.bag_tick,
+                      title: 'My Orders',
+                      subTitle: 'In-progress and Completed Orders',
+                      onTap: () {},
+                    ),
+                    const SettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subTitle: 'Withdraw balance to registered bank account'),
+                    const SettingsMenuTile(icon: Iconsax.discount_shape, title: 'My Coupons', subTitle: 'List of all the discounted coupons'),
                   SettingsMenuTile(icon: Iconsax.notification, title: localizations.notifications, subTitle: localizations.notificationsSubtitle),
                   SettingsMenuTile(icon: Iconsax.security_card, title: localizations.accountPrivacy, subTitle: localizations.accountPrivacySubtitle),
                   const SizedBox(height: Sizes.spaceBtwSections),
@@ -76,12 +76,12 @@ class SettingsScreen extends StatelessWidget {
                     subTitle: localizations.loadDataSubtitle,
                     onTap: () {},
                   ),
-                //   SettingsMenuTile(
-                //     icon: Iconsax.location,
-                //     title: 'Geolocation',
-                //     subTitle: 'Set recommendation based on location',
-                //     trailing: Switch(value: true, onChanged: (value) {}),
-                //   ),
+                    SettingsMenuTile(
+                      icon: Iconsax.location,
+                      title: 'Geolocation',
+                      subTitle: 'Set recommendation based on location',
+                      trailing: Switch(value: true, onChanged: (value) {}),
+                    ),
                   SettingsMenuTile(
                     icon: Iconsax.moon,
                     title: localizations.darkMode,

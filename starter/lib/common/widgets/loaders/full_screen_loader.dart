@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/common/styles/colors.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/common/widgets/loaders/animation_loader.dart';
@@ -12,22 +12,23 @@ class FullScreenLoader {
       context: Get.overlayContext!,
       barrierDismissible: false,
       builder: (context) {
-      final localizations = AppLocalizations.of(context)!;
+        final localizations = AppLocalizations.of(context)!;
 
-      return PopScope(
-        canPop: false,
-        child: Container(
-          color: HelperFunctions.isDarkMode(Get.context!) ? AppColors.dark : AppColors.white,
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(
-            children: [
-              const SizedBox(height: Sizes.xl * 10),
-              AnimationLoaderWidget(text: text ?? localizations.pleaseWait, animation: animation),
-            ],
+        return PopScope(
+          canPop: false,
+          child: Container(
+            color: HelperFunctions.isDarkMode(Get.context!) ? AppColors.dark : AppColors.white,
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(
+              children: [
+                const SizedBox(height: Sizes.xl * 10),
+                AnimationLoaderWidget(text: text ?? localizations.pleaseWait, animation: animation),
+              ],
+            ),
           ),
-        ),
-      );},
+        );
+      },
     );
   }
 

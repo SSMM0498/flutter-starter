@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:starter/core/controllers/network_manager.dart';
 import 'package:starter/core/controllers/app_settings_controller.dart';

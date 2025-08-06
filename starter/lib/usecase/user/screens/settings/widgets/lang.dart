@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/common/styles/colors.dart';
 import 'package:starter/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:starter/core/controllers/app_settings_controller.dart';

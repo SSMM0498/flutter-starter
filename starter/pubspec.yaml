@@ -1,5 +1,5 @@
 name: starter
-description: "A new Flutter project."
+description: "A Starter Flutter project."
 
 publish_to: "none"
 
@@ -30,6 +30,7 @@ dependencies:
   shimmer: ^3.0.0
   timezone: ^0.9.4
   flutter_local_notifications: ^17.2.1+2
+  animations: ^2.0.11
 
   # State Management
   get: ^4.6.6

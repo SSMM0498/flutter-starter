@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/core/controllers/auth_controller.dart';
 import 'package:starter/usecase/auth/controllers/verify_email/verify_email_controller.dart';
@@ -67,7 +67,10 @@ class VerifyEmailScreen extends StatelessWidget {
               const SizedBox(height: Sizes.spaceBtwItems),
               SizedBox(
                 width: double.infinity,
-                child: TextButton(onPressed: () => controller.sendEmailVerification(email: email, emailText: LoaderText(title: localizations.emailSent, message: localizations.changeEmailMail)), child: Text(localizations.resendEmail)),
+                child: TextButton(
+                    onPressed: () => controller.sendEmailVerification(
+                        email: email, emailText: LoaderText(title: localizations.emailSent, message: localizations.changeEmailMail)),
+                    child: Text(localizations.resendEmail)),
               ),
             ],
           ),

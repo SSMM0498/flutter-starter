@@ -1,4 +1,8 @@
 {
+  "@@locale": "fr",
+  "home": "Accueil",
+  "library": "Biblio",
+  "category": "Categorie",
   "search": "Rechercher un item",
   "searchTitle": "Recherche",
   "failedToAuthenticate": "Échec de l'authentification.",

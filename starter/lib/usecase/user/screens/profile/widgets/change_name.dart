@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/sizes.dart';
 import 'package:starter/common/widgets/appbar/appbar.dart';

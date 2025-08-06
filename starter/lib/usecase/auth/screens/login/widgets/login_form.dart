@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/sizes.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:starter/l10n/app_localizations.dart';
 import 'package:starter/common/widgets/app_checkbox/app_checkbox.dart';
 import 'package:starter/routes/routes.dart';
 import 'package:starter/usecase/auth/controllers/login/login_controller.dart';

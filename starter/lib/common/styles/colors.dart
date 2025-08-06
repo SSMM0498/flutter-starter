@@ -17,7 +17,7 @@ class AppColors {
 
   // Background colors
   static const Color light = Color(0xFFF6F6F6);
-  static const Color dark = Color(0xFF011240);
+  static const Color dark = Color.fromARGB(255, 29, 64, 1);
   static const Color primaryBackground = Color(0xFFF3F5FF);
 
   // Background Container colors

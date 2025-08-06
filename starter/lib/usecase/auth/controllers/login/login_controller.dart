@@ -56,6 +56,7 @@ class LoginController extends GetxController {
       }
 
       final userCredentials = await AuthController.instance.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
+    print("🌟 $userCredentials");
 
       FullScreenLoader.stopLoading();
       if (userCredentials.token.isNotEmpty && userCredentials.record != null) {
@@ -66,6 +67,7 @@ class LoginController extends GetxController {
       if (e is ClientException) {
         Loaders.errorSnackBar(title: 'Oh Snap', message: e.response['message']);
       } else {
+        print("🌟 $e");
         Loaders.errorSnackBar(title: 'Oh Snap', message: 'Failed to credential.');
       }
     }
