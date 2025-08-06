@@ -13,7 +13,7 @@ class UpdateEmailController extends GetxController {
 
   final email = TextEditingController();
   final userController = UserController.instance;
-  final userRepository = Get.put(UserRepository());
+  final userRepository = UserRepository.instance;
   GlobalKey<FormState> updateEmailFormKey = GlobalKey<FormState>();
 
   @override

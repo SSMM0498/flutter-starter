@@ -20,7 +20,7 @@ import 'package:starter/utils/image_strings.dart';
 class UpdateGenderController extends GetxController {
   static UpdateGenderController get instance => Get.find();
 
-  final userRepository = Get.put(UserRepository());
+  final userRepository = UserRepository.instance;
   final userController = UserController.instance;
 
   final genders = [

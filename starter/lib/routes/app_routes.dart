@@ -7,6 +7,7 @@ import 'package:starter/usecase/auth/screens/login/login.dart';
 import 'package:starter/usecase/auth/screens/onboarding/onboarding.dart';
 import 'package:starter/usecase/auth/screens/password_configuration/forget_password.dart';
 import 'package:starter/usecase/auth/screens/signup/signup.dart';
+import 'package:starter/usecase/main/screens/device/device.dart';
 import 'package:starter/usecase/main/screens/home/home.dart';
 import 'package:starter/usecase/user/screens/profile/profile.dart';
 import 'package:starter/usecase/user/screens/settings/settings.dart';
@@ -38,6 +39,10 @@ class AppRoutes {
       name: Routes.home,
       page: () => const HomeScreen(),
       middlewares: [AuthGuard()],
+    ),
+    GetPage(
+      name: Routes.device,
+      page: () => const DeviceAccessTestScreen(),
     ),
     GetPage(
       name: Routes.search,

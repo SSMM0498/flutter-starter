@@ -13,7 +13,7 @@ class UpdateUsernameController extends GetxController {
 
   final username = TextEditingController();
   final userController = UserController.instance;
-  final userRepository = Get.put(UserRepository());
+  final userRepository = UserRepository.instance;
   GlobalKey<FormState> updateUsernameFormKey = GlobalKey<FormState>();
 
   @override

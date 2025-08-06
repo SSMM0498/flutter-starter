@@ -17,7 +17,7 @@ class LoginController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  final userRepository = Get.put(UserRepository());
+  final userRepository = UserRepository.instance;
 
   @override
   void onInit() {
@@ -56,7 +56,7 @@ class LoginController extends GetxController {
       }
 
       final userCredentials = await AuthController.instance.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
-    print("🌟 $userCredentials");
+      print("🌟 $userCredentials");
 
       FullScreenLoader.stopLoading();
       if (userCredentials.token.isNotEmpty && userCredentials.record != null) {

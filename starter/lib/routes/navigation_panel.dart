@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:starter/common/styles/colors.dart';
 import 'package:starter/l10n/app_localizations.dart';
+import 'package:starter/usecase/main/screens/device/device.dart';
 import 'package:starter/usecase/main/screens/home/home.dart';
 import 'package:starter/usecase/user/screens/settings/settings.dart';
 import 'package:starter/utils/helper_functions.dart';
@@ -57,7 +58,7 @@ class NavigationController extends GetxController {
 
   final screens = [
     const HomeScreen(),
-    Container(color: Colors.purple), // Placeholder for a feature
+    const DeviceAccessTestScreen(), // Placeholder for a feature
     Container(color: Colors.orange), // Placeholder for a feature
     const SettingsScreen(),
   ];

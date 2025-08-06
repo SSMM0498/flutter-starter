@@ -1,4 +1,3 @@
-// pocketbase_singleton.dart
 import 'dart:convert';
 import 'dart:io';
 
@@ -9,7 +8,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:starter/core/services/local_storage/local_storage.dart';
-import 'package:starter/data/models/user.dart';
 import 'factories/factory_mobile.dart' if (dart.library.html) 'factories/factory_web.dart';
 
 class PocketBaseSingleton {
@@ -19,7 +17,6 @@ class PocketBaseSingleton {
   late final PocketBase client;
   late String _temporaryDirectory;
   final _httpClient = HttpClient();
-  UserModel user = UserModel.empty();
   late final LocalStorage storage;
 
   factory PocketBaseSingleton() {
@@ -49,6 +46,10 @@ class PocketBaseSingleton {
 
       client.authStore.onChange.listen((event) {
         debugPrint('🔐 AuthStore changed: ${event.token} ${event.model}');
+        if (event.model is RecordModel) {
+            storage.cacheUser(json.encode(event.model.toJson()));
+            debugPrint('✅ User model cached successfully.');
+        }
       });
 
       if (client.authStore.isValid) {
@@ -75,12 +76,6 @@ class PocketBaseSingleton {
     final connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       await client.collection('users').authRefresh();
-    } else {
-      final cachedUser = await storage.getCachedUser();
-      if (cachedUser != null) {
-        user = UserModel.fromJson(json.decode(cachedUser));
-        client.authStore.save(user.token!, RecordModel.fromJson(user.toJson()));
-      }
     }
   }
 

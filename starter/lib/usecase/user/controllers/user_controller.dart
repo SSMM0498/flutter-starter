@@ -1,5 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:starter/core/services/local_storage/local_storage.dart';
 import 'package:starter/l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,7 +29,8 @@ class UserController extends GetxController {
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final authController = AuthController.instance;
-  final userRepository = UserRepository.instance;
+ final UserRepository userRepository = Get.put(UserRepository());
+
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
 
   @override
@@ -36,32 +39,54 @@ class UserController extends GetxController {
 
     final pb = PocketBaseSingleton().client;
 
-    // Add this listener
     pb.authStore.onChange.listen((event) {
       if (event.model != null && event.token.isNotEmpty) {
-        fetchUserRecord();
+        user.value = UserModel.fromJson(event.model.toJson());
+        debugPrint('✅ UserController updated from authStore.onChange');
       } else {
-        // Clear user data on logout
         user.value = UserModel.empty();
       }
     });
 
-    // Add this initial check for when the app starts already logged in
+    // Initial data fetch when the app starts
     if (pb.authStore.isValid) {
-      fetchUserRecord();
+      // Use the cached user first for instant UI, then fetch fresh data
+      loadUserFromCacheAndFetch();
+    }
+  }
+
+  Future<void> loadUserFromCacheAndFetch() async {
+    try {
+      profileLoading.value = true;
+      final storage = LocalStorage();
+      final cachedUserJson = await storage.getCachedUser();
+      if (cachedUserJson != null) {
+        user.value = UserModel.fromJson(json.decode(cachedUserJson));
+        debugPrint('✅ User loaded from cache.');
+      }
+
+      await fetchUserRecord();
+
+    } catch (e) {
+      debugPrint('🚨 Error in loadUserFromCacheAndFetch: $e');
+    } finally {
+      profileLoading.value = false;
     }
   }
 
   Future<void> fetchUserRecord() async {
     try {
-      profileLoading.value = true;
-      await PocketBaseSingleton().authRefresh();
-      final localUser = PocketBaseSingleton().user;
-      user(localUser);
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        debugPrint('⏩ Skipping user record fetch: No internet.');
+        return;
+      }
+
+      final userRecord = await userRepository.fetchUserDetails();
+      user.value = userRecord;
+      debugPrint('✅ User record fetched successfully from network.');
     } catch (e) {
-      user(UserModel.empty());
-    } finally {
-      profileLoading.value = false;
+      debugPrint('❌ Failed to fetch user record: $e');
     }
   }
 
