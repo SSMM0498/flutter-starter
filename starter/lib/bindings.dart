@@ -1,0 +1,13 @@
+import 'package:get/get.dart';
+import 'package:starter/core/controllers/network_manager.dart';
+import 'package:starter/core/controllers/notification_controller.dart';
+import 'package:starter/usecase/user/controllers/user_controller.dart';
+
+class InitialBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.put(NetworkManager(), permanent: true);
+    Get.put(UserController(), permanent: true);
+    Get.put(NotificationController(), permanent: true);
+  }
+}

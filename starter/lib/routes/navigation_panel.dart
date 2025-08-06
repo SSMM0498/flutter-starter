@@ -57,12 +57,8 @@ class NavigationController extends GetxController {
 
   final screens = [
     const HomeScreen(),
-    Container(
-      color: Colors.purple,
-    ),
-    Container(
-      color: Colors.orange,
-    ),
+    Container(color: Colors.purple), // Placeholder for a feature
+    Container(color: Colors.orange), // Placeholder for a feature
     const SettingsScreen(),
   ];
 }

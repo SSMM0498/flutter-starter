@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:starter/bindings.dart';
 import 'package:starter/l10n/app_localizations.dart';
 import 'package:get/get.dart';
-import 'package:starter/core/controllers/network_manager.dart';
 import 'package:starter/core/controllers/app_settings_controller.dart';
-import 'package:starter/core/controllers/notification_controller.dart';
-import 'package:starter/data/repository/user_repository.dart';
 import 'package:starter/routes/app_routes.dart';
 
 import 'common/styles/themes/theme.dart';
@@ -30,18 +28,10 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: appSettingController.availableLanguage.map((e) => Locale(e.code)),
-      initialBinding: GeneralBindings(),
+      initialBinding: InitialBinding(),
+
       initialRoute: initialRoute,
       getPages: AppRoutes.pages,
     );
-  }
-}
-
-class GeneralBindings extends Bindings {
-  @override
-  void dependencies() {
-    Get.put(NetworkManager());
-    Get.put(NotificationController());
-    Get.put(UserRepository());
   }
 }

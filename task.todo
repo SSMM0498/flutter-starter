@@ -8,17 +8,17 @@
     * [x] 0.1.4: Create `/docs` Directory Structure
 
 * [ ]  **0.2: Core Architectural Refinement**
-    * [ ] 0.2.1: Implement Environment Configuration (`.env`)
-    * [ ] 0.2.2: Refactor `PocketBaseSingleton` to be Stateless
-    * [ ] 0.2.3: Centralize Dependency Injection (`InitialBinding`)
-    * [ ] 0.2.4: Refactor `UserController` as Single Source of Truth
-    * [ ] 0.2.5: Create `ApiHelper` Utility
+    * [x] 0.2.1: Implement Environment Configuration (`.env`)
+    * [x] 0.2.2: Refactor `PocketBaseSingleton` to be Stateless
+    * [x] 0.2.3: Centralize Dependency Injection (`InitialBinding`)
+    * [x] 0.2.4: Refactor `UserController` as Single Source of Truth
+    * [x] 0.2.5: Create `ApiHelper` Utility
 
 * [ ]  **0.3: Core UI Shell & Navigation**
-    * [ ] 0.3.1: Create Minimal `AppRoutes`
-    * [ ] 0.3.2: Implement `NavigationPanel` with Placeholders
-    * [ ] 0.3.3: Create Minimal `LoginScreen`
-    * [ ] 0.3.4: Create Minimal `SettingsScreen`
+    * [x] 0.3.1: Create Minimal `AppRoutes`
+    * [x] 0.3.2: Implement `NavigationPanel` with Placeholders
+    * [x] 0.3.3: Create Minimal `LoginScreen`
+    * [x] 0.3.4: Create Minimal `SettingsScreen`
 
 * [ ]  **0.4: Core Documentation**
     * [ ] 0.4.1: Write Root `README.md` (Project Philosophy & Workflow)

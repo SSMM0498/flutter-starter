@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pocketbase/pocketbase.dart';
@@ -14,8 +15,7 @@ import 'factories/factory_mobile.dart' if (dart.library.html) 'factories/factory
 class PocketBaseSingleton {
   static final PocketBaseSingleton _instance = PocketBaseSingleton._internal();
 
-//   final _pocketBaseUrl = "https://pocketbase-starter.fly.dev/";
-  final _pocketBaseUrl = "http://192.168.1.17:8090/";
+  final _pocketBaseUrl = dotenv.env['POCKETBASE_URL']!;
   late final PocketBase client;
   late String _temporaryDirectory;
   final _httpClient = HttpClient();
@@ -47,13 +47,8 @@ class PocketBaseSingleton {
         authStore: customAuthStore,
       );
 
-      client.authStore.onChange.listen((AuthStoreEvent event) {
-        if (event.model is RecordModel) {
-          user = UserModel.fromJson(event.model.toJson());
-          user.token = event.token;
-          storage.cacheUser(json.encode(user.toJson()));
-          debugPrint('🔐 Update Auth Store ${user.toJson()}');
-        }
+      client.authStore.onChange.listen((event) {
+        debugPrint('🔐 AuthStore changed: ${event.token} ${event.model}');
       });
 
       if (client.authStore.isValid) {

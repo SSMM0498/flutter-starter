@@ -33,7 +33,23 @@ class UserController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchUserRecord();
+
+    final pb = PocketBaseSingleton().client;
+
+    // Add this listener
+    pb.authStore.onChange.listen((event) {
+      if (event.model != null && event.token.isNotEmpty) {
+        fetchUserRecord();
+      } else {
+        // Clear user data on logout
+        user.value = UserModel.empty();
+      }
+    });
+
+    // Add this initial check for when the app starts already logged in
+    if (pb.authStore.isValid) {
+      fetchUserRecord();
+    }
   }
 
   Future<void> fetchUserRecord() async {

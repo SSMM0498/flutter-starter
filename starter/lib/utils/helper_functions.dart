@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:starter/common/widgets/loaders/full_screen_loader.dart';
+import 'package:starter/common/widgets/loaders/loaders.dart';
+import 'package:starter/core/controllers/network_manager.dart';
+import 'package:starter/utils/image_strings.dart';
 
 class HelperFunctions {
   static Color? getColor(String value) {
@@ -34,6 +38,33 @@ class HelperFunctions {
       return Colors.indigo;
     } else {
       return null;
+    }
+  }
+
+  static Future<void> safeApiCall(
+    Future<void> Function() apiCall,
+    { GlobalKey<FormState>? formKey, String? loadingMessage }
+  ) async {
+    try {
+      FullScreenLoader.openLoadingDialog(animation: ImageStrings.docerAnimation);
+
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        FullScreenLoader.stopLoading();
+        Loaders.warningSnackBar(title: 'No Internet Connection');
+        return;
+      }
+
+      if (formKey != null && !formKey.currentState!.validate()) {
+        FullScreenLoader.stopLoading();
+        return;
+      }
+
+      await apiCall();
+
+    } catch (e) {
+      FullScreenLoader.stopLoading();
+      Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     }
   }
 

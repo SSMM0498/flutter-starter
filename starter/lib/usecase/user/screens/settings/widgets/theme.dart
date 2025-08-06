@@ -6,7 +6,7 @@ import 'package:starter/utils/helper_functions.dart';
 class ThemeSwitcherWidget extends StatelessWidget {
   ThemeSwitcherWidget({super.key});
 
-  final AppSettingController appSettingController = Get.put(AppSettingController());
+  final AppSettingController appSettingController = Get.find<AppSettingController>();
 
   @override
   Widget build(BuildContext context) {

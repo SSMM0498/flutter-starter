@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:starter/routes/routes.dart';
@@ -15,6 +16,9 @@ Future<void> main() async {
 
   // Initialize time zones
   tz.initializeTimeZones();
+
+  // Load .env file
+  await dotenv.load(fileName: ".env");
 
   // Preserve the native splash screen
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
